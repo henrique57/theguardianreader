@@ -13,6 +13,8 @@
 		E6B23E0C21513AFD006B638F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6B23E0A21513AFD006B638F /* Main.storyboard */; };
 		E6B23E0E21513B04006B638F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6B23E0D21513B04006B638F /* Assets.xcassets */; };
 		E6B23E1121513B04006B638F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6B23E0F21513B04006B638F /* LaunchScreen.storyboard */; };
+		E6B23E1921514055006B638F /* SessaoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B23E1821514055006B638F /* SessaoTableViewCell.swift */; };
+		E6B23E1F215172D2006B638F /* SessaoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B23E1E215172D2006B638F /* SessaoTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		E6B23E0D21513B04006B638F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E6B23E1021513B04006B638F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E6B23E1221513B04006B638F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E6B23E1821514055006B638F /* SessaoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessaoTableViewCell.swift; sourceTree = "<group>"; };
+		E6B23E1E215172D2006B638F /* SessaoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessaoTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,9 +64,11 @@
 				E6B23E0621513AFD006B638F /* FirstViewController.swift */,
 				E6B23E0821513AFD006B638F /* SecondViewController.swift */,
 				E6B23E0A21513AFD006B638F /* Main.storyboard */,
+				E6B23E1E215172D2006B638F /* SessaoTableViewController.swift */,
 				E6B23E0D21513B04006B638F /* Assets.xcassets */,
 				E6B23E0F21513B04006B638F /* LaunchScreen.storyboard */,
 				E6B23E1221513B04006B638F /* Info.plist */,
+				E6B23E1821514055006B638F /* SessaoTableViewCell.swift */,
 			);
 			path = theguardianreader;
 			sourceTree = "<group>";
@@ -139,7 +145,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6B23E0921513AFD006B638F /* SecondViewController.swift in Sources */,
+				E6B23E1921514055006B638F /* SessaoTableViewCell.swift in Sources */,
 				E6B23E0521513AFD006B638F /* AppDelegate.swift in Sources */,
+				E6B23E1F215172D2006B638F /* SessaoTableViewController.swift in Sources */,
 				E6B23E0721513AFD006B638F /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
