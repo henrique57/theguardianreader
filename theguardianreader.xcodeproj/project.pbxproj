@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DBF53C80B12A3A97FF5FCF67 /* Pods_theguardianreader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72E98AE5DBF8DBE844404F1B /* Pods_theguardianreader.framework */; };
 		E6B23E0521513AFD006B638F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B23E0421513AFD006B638F /* AppDelegate.swift */; };
 		E6B23E0721513AFD006B638F /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B23E0621513AFD006B638F /* FirstViewController.swift */; };
 		E6B23E0921513AFD006B638F /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B23E0821513AFD006B638F /* SecondViewController.swift */; };
@@ -15,9 +16,12 @@
 		E6B23E1121513B04006B638F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6B23E0F21513B04006B638F /* LaunchScreen.storyboard */; };
 		E6B23E1921514055006B638F /* SessaoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B23E1821514055006B638F /* SessaoTableViewCell.swift */; };
 		E6B23E1F215172D2006B638F /* SessaoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B23E1E215172D2006B638F /* SessaoTableViewController.swift */; };
+		E6B23E2321517A22006B638F /* Sessao.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B23E2221517A22006B638F /* Sessao.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		472CE46D354F42E083C7EF17 /* Pods-theguardianreader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-theguardianreader.release.xcconfig"; path = "Pods/Target Support Files/Pods-theguardianreader/Pods-theguardianreader.release.xcconfig"; sourceTree = "<group>"; };
+		72E98AE5DBF8DBE844404F1B /* Pods_theguardianreader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_theguardianreader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6B23E0121513AFD006B638F /* theguardianreader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = theguardianreader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6B23E0421513AFD006B638F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E6B23E0621513AFD006B638F /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -28,6 +32,8 @@
 		E6B23E1221513B04006B638F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6B23E1821514055006B638F /* SessaoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessaoTableViewCell.swift; sourceTree = "<group>"; };
 		E6B23E1E215172D2006B638F /* SessaoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessaoTableViewController.swift; sourceTree = "<group>"; };
+		E6B23E2221517A22006B638F /* Sessao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sessao.swift; sourceTree = "<group>"; };
+		FA85BAA28AAF420C40D14448 /* Pods-theguardianreader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-theguardianreader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-theguardianreader/Pods-theguardianreader.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +41,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBF53C80B12A3A97FF5FCF67 /* Pods_theguardianreader.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C301EA4128084598C59B757 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				72E98AE5DBF8DBE844404F1B /* Pods_theguardianreader.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E6B23DF821513AFD006B638F = {
 			isa = PBXGroup;
 			children = (
 				E6B23E0321513AFD006B638F /* theguardianreader */,
 				E6B23E0221513AFD006B638F /* Products */,
+				FC5A374451B631F6EDED8C1C /* Pods */,
+				1C301EA4128084598C59B757 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +77,7 @@
 		E6B23E0321513AFD006B638F /* theguardianreader */ = {
 			isa = PBXGroup;
 			children = (
+				E6B23E24215185E3006B638F /* model */,
 				E6B23E0421513AFD006B638F /* AppDelegate.swift */,
 				E6B23E0621513AFD006B638F /* FirstViewController.swift */,
 				E6B23E0821513AFD006B638F /* SecondViewController.swift */,
@@ -73,6 +91,23 @@
 			path = theguardianreader;
 			sourceTree = "<group>";
 		};
+		E6B23E24215185E3006B638F /* model */ = {
+			isa = PBXGroup;
+			children = (
+				E6B23E2221517A22006B638F /* Sessao.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		FC5A374451B631F6EDED8C1C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FA85BAA28AAF420C40D14448 /* Pods-theguardianreader.debug.xcconfig */,
+				472CE46D354F42E083C7EF17 /* Pods-theguardianreader.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -80,9 +115,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E6B23E1521513B04006B638F /* Build configuration list for PBXNativeTarget "theguardianreader" */;
 			buildPhases = (
+				6F8EEF1138A52A4E93F54549 /* [CP] Check Pods Manifest.lock */,
 				E6B23DFD21513AFD006B638F /* Sources */,
 				E6B23DFE21513AFD006B638F /* Frameworks */,
 				E6B23DFF21513AFD006B638F /* Resources */,
+				0B5FB380928CDC8497CF855D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -139,6 +176,53 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0B5FB380928CDC8497CF855D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-theguardianreader/Pods-theguardianreader-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-theguardianreader/Pods-theguardianreader-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6F8EEF1138A52A4E93F54549 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-theguardianreader-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E6B23DFD21513AFD006B638F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -147,6 +231,7 @@
 				E6B23E0921513AFD006B638F /* SecondViewController.swift in Sources */,
 				E6B23E1921514055006B638F /* SessaoTableViewCell.swift in Sources */,
 				E6B23E0521513AFD006B638F /* AppDelegate.swift in Sources */,
+				E6B23E2321517A22006B638F /* Sessao.swift in Sources */,
 				E6B23E1F215172D2006B638F /* SessaoTableViewController.swift in Sources */,
 				E6B23E0721513AFD006B638F /* FirstViewController.swift in Sources */,
 			);
@@ -290,6 +375,7 @@
 		};
 		E6B23E1621513B04006B638F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FA85BAA28AAF420C40D14448 /* Pods-theguardianreader.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -308,6 +394,7 @@
 		};
 		E6B23E1721513B04006B638F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 472CE46D354F42E083C7EF17 /* Pods-theguardianreader.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
