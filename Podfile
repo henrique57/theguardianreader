@@ -7,5 +7,6 @@ target 'theguardianreader' do
 
   # Pods for theguardianreader
   pod 'Alamofire', '~> 4.7'
+  pod 'AlamofireObjectMapper', '~> 5.0'	
 
 end

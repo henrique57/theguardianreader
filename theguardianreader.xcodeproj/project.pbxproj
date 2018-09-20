@@ -9,14 +9,20 @@
 /* Begin PBXBuildFile section */
 		DBF53C80B12A3A97FF5FCF67 /* Pods_theguardianreader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72E98AE5DBF8DBE844404F1B /* Pods_theguardianreader.framework */; };
 		E6B23E0521513AFD006B638F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B23E0421513AFD006B638F /* AppDelegate.swift */; };
-		E6B23E0721513AFD006B638F /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B23E0621513AFD006B638F /* FirstViewController.swift */; };
-		E6B23E0921513AFD006B638F /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B23E0821513AFD006B638F /* SecondViewController.swift */; };
 		E6B23E0C21513AFD006B638F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6B23E0A21513AFD006B638F /* Main.storyboard */; };
 		E6B23E0E21513B04006B638F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6B23E0D21513B04006B638F /* Assets.xcassets */; };
 		E6B23E1121513B04006B638F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6B23E0F21513B04006B638F /* LaunchScreen.storyboard */; };
 		E6B23E1921514055006B638F /* SessaoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B23E1821514055006B638F /* SessaoTableViewCell.swift */; };
 		E6B23E1F215172D2006B638F /* SessaoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B23E1E215172D2006B638F /* SessaoTableViewController.swift */; };
 		E6B23E2321517A22006B638F /* Sessao.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B23E2221517A22006B638F /* Sessao.swift */; };
+		E6DE69B92152A5C700ADD969 /* NoticiaSessaoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DE69B82152A5C700ADD969 /* NoticiaSessaoTableViewController.swift */; };
+		E6DE69BB2152AF1800ADD969 /* NoticiaSessaoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DE69BA2152AF1800ADD969 /* NoticiaSessaoTableViewCell.swift */; };
+		E6DE69BD2152B0EC00ADD969 /* NoticiaSessao.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DE69BC2152B0EC00ADD969 /* NoticiaSessao.swift */; };
+		E6DE69C02152DE5A00ADD969 /* FetchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DE69BF2152DE5A00ADD969 /* FetchService.swift */; };
+		E6DE69C42153D91000ADD969 /* SessaoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DE69C32153D90F00ADD969 /* SessaoResponse.swift */; };
+		E6DE69C821541B1800ADD969 /* LinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DE69C721541B1800ADD969 /* LinkManager.swift */; };
+		E6DE69CA215421ED00ADD969 /* dados.plist in Resources */ = {isa = PBXBuildFile; fileRef = E6DE69C9215421ED00ADD969 /* dados.plist */; };
+		E6DE69CC21542A7300ADD969 /* NoticiaSessaoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DE69CB21542A7300ADD969 /* NoticiaSessaoResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,8 +30,6 @@
 		72E98AE5DBF8DBE844404F1B /* Pods_theguardianreader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_theguardianreader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6B23E0121513AFD006B638F /* theguardianreader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = theguardianreader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6B23E0421513AFD006B638F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E6B23E0621513AFD006B638F /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		E6B23E0821513AFD006B638F /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		E6B23E0B21513AFD006B638F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E6B23E0D21513B04006B638F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E6B23E1021513B04006B638F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -33,6 +37,14 @@
 		E6B23E1821514055006B638F /* SessaoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessaoTableViewCell.swift; sourceTree = "<group>"; };
 		E6B23E1E215172D2006B638F /* SessaoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessaoTableViewController.swift; sourceTree = "<group>"; };
 		E6B23E2221517A22006B638F /* Sessao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sessao.swift; sourceTree = "<group>"; };
+		E6DE69B82152A5C700ADD969 /* NoticiaSessaoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticiaSessaoTableViewController.swift; sourceTree = "<group>"; };
+		E6DE69BA2152AF1800ADD969 /* NoticiaSessaoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticiaSessaoTableViewCell.swift; sourceTree = "<group>"; };
+		E6DE69BC2152B0EC00ADD969 /* NoticiaSessao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticiaSessao.swift; sourceTree = "<group>"; };
+		E6DE69BF2152DE5A00ADD969 /* FetchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchService.swift; sourceTree = "<group>"; };
+		E6DE69C32153D90F00ADD969 /* SessaoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessaoResponse.swift; sourceTree = "<group>"; };
+		E6DE69C721541B1800ADD969 /* LinkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkManager.swift; sourceTree = "<group>"; };
+		E6DE69C9215421ED00ADD969 /* dados.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = dados.plist; sourceTree = "<group>"; };
+		E6DE69CB21542A7300ADD969 /* NoticiaSessaoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticiaSessaoResponse.swift; sourceTree = "<group>"; };
 		FA85BAA28AAF420C40D14448 /* Pods-theguardianreader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-theguardianreader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-theguardianreader/Pods-theguardianreader.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,6 +68,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E65B911721528405003F5BBE /* views */ = {
+			isa = PBXGroup;
+			children = (
+				E6DE69C6215417D900ADD969 /* noticia */,
+				E6DE69B72152A42A00ADD969 /* noticias */,
+				E65B91182152841D003F5BBE /* sessao */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		E65B91182152841D003F5BBE /* sessao */ = {
+			isa = PBXGroup;
+			children = (
+				E6B23E1E215172D2006B638F /* SessaoTableViewController.swift */,
+				E6B23E1821514055006B638F /* SessaoTableViewCell.swift */,
+			);
+			path = sessao;
+			sourceTree = "<group>";
+		};
 		E6B23DF821513AFD006B638F = {
 			isa = PBXGroup;
 			children = (
@@ -77,16 +108,14 @@
 		E6B23E0321513AFD006B638F /* theguardianreader */ = {
 			isa = PBXGroup;
 			children = (
+				E6DE69BE2152DDC000ADD969 /* service */,
+				E65B911721528405003F5BBE /* views */,
 				E6B23E24215185E3006B638F /* model */,
 				E6B23E0421513AFD006B638F /* AppDelegate.swift */,
-				E6B23E0621513AFD006B638F /* FirstViewController.swift */,
-				E6B23E0821513AFD006B638F /* SecondViewController.swift */,
 				E6B23E0A21513AFD006B638F /* Main.storyboard */,
-				E6B23E1E215172D2006B638F /* SessaoTableViewController.swift */,
 				E6B23E0D21513B04006B638F /* Assets.xcassets */,
 				E6B23E0F21513B04006B638F /* LaunchScreen.storyboard */,
 				E6B23E1221513B04006B638F /* Info.plist */,
-				E6B23E1821514055006B638F /* SessaoTableViewCell.swift */,
 			);
 			path = theguardianreader;
 			sourceTree = "<group>";
@@ -94,9 +123,46 @@
 		E6B23E24215185E3006B638F /* model */ = {
 			isa = PBXGroup;
 			children = (
+				E6DE69C52153EBFA00ADD969 /* responses */,
 				E6B23E2221517A22006B638F /* Sessao.swift */,
+				E6DE69BC2152B0EC00ADD969 /* NoticiaSessao.swift */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		E6DE69B72152A42A00ADD969 /* noticias */ = {
+			isa = PBXGroup;
+			children = (
+				E6DE69B82152A5C700ADD969 /* NoticiaSessaoTableViewController.swift */,
+				E6DE69BA2152AF1800ADD969 /* NoticiaSessaoTableViewCell.swift */,
+			);
+			path = noticias;
+			sourceTree = "<group>";
+		};
+		E6DE69BE2152DDC000ADD969 /* service */ = {
+			isa = PBXGroup;
+			children = (
+				E6DE69C9215421ED00ADD969 /* dados.plist */,
+				E6DE69BF2152DE5A00ADD969 /* FetchService.swift */,
+				E6DE69C721541B1800ADD969 /* LinkManager.swift */,
+			);
+			path = service;
+			sourceTree = "<group>";
+		};
+		E6DE69C52153EBFA00ADD969 /* responses */ = {
+			isa = PBXGroup;
+			children = (
+				E6DE69C32153D90F00ADD969 /* SessaoResponse.swift */,
+				E6DE69CB21542A7300ADD969 /* NoticiaSessaoResponse.swift */,
+			);
+			path = responses;
+			sourceTree = "<group>";
+		};
+		E6DE69C6215417D900ADD969 /* noticia */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = noticia;
 			sourceTree = "<group>";
 		};
 		FC5A374451B631F6EDED8C1C /* Pods */ = {
@@ -169,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6B23E1121513B04006B638F /* LaunchScreen.storyboard in Resources */,
+				E6DE69CA215421ED00ADD969 /* dados.plist in Resources */,
 				E6B23E0E21513B04006B638F /* Assets.xcassets in Resources */,
 				E6B23E0C21513AFD006B638F /* Main.storyboard in Resources */,
 			);
@@ -182,17 +249,17 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-theguardianreader/Pods-theguardianreader-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -204,15 +271,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-theguardianreader-checkManifestLockResult.txt",
 			);
@@ -228,12 +291,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6B23E0921513AFD006B638F /* SecondViewController.swift in Sources */,
+				E6DE69CC21542A7300ADD969 /* NoticiaSessaoResponse.swift in Sources */,
+				E6DE69C02152DE5A00ADD969 /* FetchService.swift in Sources */,
+				E6DE69BB2152AF1800ADD969 /* NoticiaSessaoTableViewCell.swift in Sources */,
 				E6B23E1921514055006B638F /* SessaoTableViewCell.swift in Sources */,
 				E6B23E0521513AFD006B638F /* AppDelegate.swift in Sources */,
+				E6DE69C42153D91000ADD969 /* SessaoResponse.swift in Sources */,
 				E6B23E2321517A22006B638F /* Sessao.swift in Sources */,
+				E6DE69B92152A5C700ADD969 /* NoticiaSessaoTableViewController.swift in Sources */,
 				E6B23E1F215172D2006B638F /* SessaoTableViewController.swift in Sources */,
-				E6B23E0721513AFD006B638F /* FirstViewController.swift in Sources */,
+				E6DE69BD2152B0EC00ADD969 /* NoticiaSessao.swift in Sources */,
+				E6DE69C821541B1800ADD969 /* LinkManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

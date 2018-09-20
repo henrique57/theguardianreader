@@ -15,7 +15,7 @@ import UIKit
 "apiUrl": "https://content.guardianapis.com/crosswords"
 */
 
-struct Session {
+class Sessao {
     let id : String?
     let webTitle : String?
     let webUrl : String?
