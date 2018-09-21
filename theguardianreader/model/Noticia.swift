@@ -23,6 +23,10 @@ class Noticia: Mappable {
     var sectionName: String?
     var bodyText: String?
     
+    init (){
+        
+    }
+    
     required init?(map: Map) {
     
     }

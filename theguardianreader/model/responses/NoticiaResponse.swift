@@ -12,7 +12,7 @@ import ObjectMapper
 class NoticiaResponse : Mappable {
 
     var status: String?
-    var noticias: [Noticia]?
+    var noticia: Noticia?
     
     required init?(map: Map) {
         
@@ -23,7 +23,7 @@ class NoticiaResponse : Mappable {
     
     func mapping(map: Map) {
         status <- map["response.status"]
-        noticias <- map["response.content"]
+        noticia <- map["response.content"]
     }
     
 }

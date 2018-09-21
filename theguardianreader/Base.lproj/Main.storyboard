@@ -124,20 +124,65 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <segue destination="OCa-O6-Tz9" kind="show" id="9vu-74-772"/>
+                        <segue destination="OCa-O6-Tz9" kind="show" identifier="listaNoticia" id="9vu-74-772"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WQC-r4-VLZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2676" y="-370.16491754122939"/>
         </scene>
-        <!--View Controller-->
+        <!--Noticia View Controller-->
         <scene sceneID="iKe-xa-dY7">
             <objects>
-                <viewController id="OCa-O6-Tz9" sceneMemberID="viewController">
+                <viewController id="OCa-O6-Tz9" customClass="NoticiaViewController" customModule="theguardianreader" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Np6-uq-Me2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EgT-85-h2e">
+                                <rect key="frame" x="0.0" y="64" width="375" height="600"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H4i-dn-7PC">
+                                        <rect key="frame" x="8" y="8" width="359" height="65"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="65" id="iI5-rd-bUK"/>
+                                            <constraint firstAttribute="height" constant="65" id="v0a-N1-0IZ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gia-yc-cpb">
+                                        <rect key="frame" x="8" y="100" width="359" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gLP-8D-f01">
+                                        <rect key="frame" x="8" y="144" width="359" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zlM-ev-euo">
+                                        <rect key="frame" x="8" y="65" width="359" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="375" id="EG9-x4-bfr"/>
+                                    <constraint firstAttribute="height" constant="600" id="Eo8-0W-yiT"/>
+                                    <constraint firstAttribute="trailing" secondItem="H4i-dn-7PC" secondAttribute="trailing" constant="20" id="Lao-gm-PeN"/>
+                                    <constraint firstItem="Gia-yc-cpb" firstAttribute="top" secondItem="H4i-dn-7PC" secondAttribute="bottom" constant="15" id="cpM-qW-Wpe"/>
+                                    <constraint firstItem="H4i-dn-7PC" firstAttribute="leading" secondItem="EgT-85-h2e" secondAttribute="leading" constant="20" id="hgj-P4-Pah"/>
+                                    <constraint firstItem="H4i-dn-7PC" firstAttribute="top" secondItem="EgT-85-h2e" secondAttribute="top" constant="15" id="u4M-x4-CfJ"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="uVF-Yx-wHB"/>
                     </view>

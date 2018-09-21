@@ -11,10 +11,8 @@ import AlamofireObjectMapper
 
 typealias JsonSessaoHandler = (([Sessao]?) -> ())
 typealias JsonNoticiaSessaoHandler = (([NoticiaSessao]?) -> ())
+typealias JsonNoticiaHandler = ((Noticia?) -> ())
 
-/* ALTERAR */
-typealias JsonNoticiaHandler = (([Sessao]?) -> ())
-/* ----- */
 
 class FetchService {
     
@@ -48,6 +46,24 @@ class FetchService {
                 if let noticias = value.noticias {
                     if let handlerUnwrapped = handler {
                         handlerUnwrapped(noticias)
+                    }
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    static func requestNews(id: String, handler: JsonNoticiaHandler?){
+        Alamofire.request(LinkManager.getUriNoticia(recurso: id)).responseObject {
+            (response: DataResponse<NoticiaResponse>) in
+            
+            switch(response.result){
+                
+            case .success(let value) :
+                if let noticia = value.noticia {
+                    if let handlerUnwrapped = handler {
+                        handlerUnwrapped(noticia)
                     }
                 }
             case .failure(let error):

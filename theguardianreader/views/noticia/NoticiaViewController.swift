@@ -11,27 +11,39 @@ import UIKit
 class NoticiaViewController: UIViewController {
 
     var selectedData: String?
+    //var noticia = Noticia()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    // MARK: - @IBOutlet
+    
+    @IBOutlet weak var labelTitle: UILabel!
+    @IBOutlet weak var labelDate: UILabel!
+    @IBOutlet weak var labelSessao: UILabel!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        pullNoticia()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func pullNews(noticia: Noticia){
+        labelTitle.text = noticia.headline
+        labelDate.text = noticia.firstPublicationDate
+        labelSessao.text = noticia.sectionName
+        textVNoticia.text = noticia.bodyText
     }
-    */
+    
+    func pullNoticia(){
+        if let news = selectedData {
+            
+            FetchService.requestNews(id: news, handler: { (items) in
+                if let item = items {
+                    self.pullNews(noticia: item)
+                }
+            })
+        }
+    }
 
 }

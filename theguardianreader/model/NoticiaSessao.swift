@@ -17,6 +17,7 @@ import ObjectMapper
 */
  
 class NoticiaSessao: Mappable{
+    var id: String?
     var webPublicationDate: String? // data
     var webTitle: String?           // título
     var apiUrl: String?
@@ -27,6 +28,7 @@ class NoticiaSessao: Mappable{
     }
     
     func mapping(map: Map) {
+        self.id <- map["id"]
         self.webPublicationDate <- map["webPublicationDate"]
         self.webTitle <- map["webTitle"]
         self.apiUrl <- map["apiUrl"]

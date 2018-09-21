@@ -19,10 +19,6 @@ class NoticiaSessaoTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.title = selectedData
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -38,6 +34,17 @@ class NoticiaSessaoTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return links.count
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destinationViewController = segue.destination as? NoticiaViewController,
+            let sender = sender as? String {
+            destinationViewController.selectedData = sender
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "listaNoticia", sender: links[indexPath.row].id)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
