@@ -11,7 +11,6 @@ import UIKit
 class SessaoTableViewController: UITableViewController {
 
     var sessoes = [Sessao]()
-    var isRefreshing : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,25 +38,22 @@ class SessaoTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "listaNoticiasSessao", sender: sessoes[indexPath.row].apiUrl)
+        self.performSegue(withIdentifier: "listaNoticiasSessao", sender: sessoes[indexPath.row].id)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sessaoCelula", for: indexPath) as! SessaoTableViewCell
-        //let sessao = sessoes[indexPath.row]
-        //cell.labelTitle.text = sessao.webTitle
-    
-        cell.labelTitle.text = sessoes[indexPath.row].webTitle
+
+        cell.labelTitle.text = sessoes[indexPath.row].id
         return cell
     }
     
     func pullRefreshSessoes(){
-        if !isRefreshing {
-            isRefreshing = true
-            FetchService.requestSessoes(handler: { (items) in
-                self.tableView.reloadData()
-                self.isRefreshing = false
-            })
-        }
+        FetchService.requestSessoes(handler: { (items) in
+            if let items = items {
+                self.sessoes += items
+            }
+            self.tableView.reloadData()
+        })
     }
 }

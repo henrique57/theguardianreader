@@ -9,7 +9,11 @@
 import UIKit
 
 class NoticiaSessaoTableViewCell: UITableViewCell {
-
+    
+    @IBOutlet weak var imageThumbnail: UIImageView!
+    @IBOutlet weak var labelNoticia: UILabel!
+    @IBOutlet weak var labelData: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -10,6 +10,8 @@ import UIKit
 
 class NoticiaViewController: UIViewController {
 
+    var selectedData: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

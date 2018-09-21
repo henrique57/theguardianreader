@@ -16,7 +16,7 @@ import ObjectMapper
      - Imagem da notícia.
 */
  
-class LinkNoticia: Mappable{
+class NoticiaSessao: Mappable{
     var webPublicationDate: String? // data
     var webTitle: String?           // título
     var apiUrl: String?
@@ -30,7 +30,7 @@ class LinkNoticia: Mappable{
         self.webPublicationDate <- map["webPublicationDate"]
         self.webTitle <- map["webTitle"]
         self.apiUrl <- map["apiUrl"]
-        self.img <- map["img"]
+        self.img <- map["fields.thumbnail"]
     }
     
 }

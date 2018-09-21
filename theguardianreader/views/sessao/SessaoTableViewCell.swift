@@ -9,7 +9,9 @@
 import UIKit
 
 class SessaoTableViewCell: UITableViewCell {
-
+    
+    @IBOutlet weak var labelTitle: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

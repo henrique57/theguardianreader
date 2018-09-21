@@ -7,3 +7,23 @@
 //
 
 import Foundation
+import ObjectMapper
+
+class NoticiaResponse : Mappable {
+
+    var status: String?
+    var noticias: [Noticia]?
+    
+    required init?(map: Map) {
+        
+    }
+    
+    // response.content.sectionName
+    // response.content.fields...
+    
+    func mapping(map: Map) {
+        status <- map["response.status"]
+        noticias <- map["response.content"]
+    }
+    
+}

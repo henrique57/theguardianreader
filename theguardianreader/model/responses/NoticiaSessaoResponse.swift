@@ -9,11 +9,9 @@
 import Foundation
 import ObjectMapper
 
-class SessoesResponse: Mappable {
+class NoticiaSessaoResponse: Mappable {
     var status: String?
-    var userTier: String?
-    var total: Int?
-    var noticias: [Noticia]?
+    var noticias: [NoticiaSessao]?
     
     required init?(map: Map) {
         
@@ -21,7 +19,6 @@ class SessoesResponse: Mappable {
     
     func mapping(map: Map) {
         status <- map["response.status"]
-        sessoes <- map["response.results"]
-    }
-    
+        noticias <- map["response.results"]
+    }    
 }

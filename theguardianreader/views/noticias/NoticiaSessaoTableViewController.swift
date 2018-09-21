@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import ImageLoader
 
 class NoticiaSessaoTableViewController: UITableViewController {
 
+    var numberPage : Int = 0
     var selectedData: String?
     var isRefreshing : Bool = false
     var links = [NoticiaSessao]()
@@ -20,7 +22,6 @@ class NoticiaSessaoTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //generateExample()
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,27 +39,53 @@ class NoticiaSessaoTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return links.count
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "noticiaCelula", for: indexPath) as! NoticiaSessaoTableViewCell
 
         // Configure the cell...
-        cell.labelNoticia.text = links[indexPath.row].webPublicationDate
+        //https://media.guim.co.uk/208c837d2ca2fdc5c5ffb5e7e3d6a6c4afed2d82/0_0_1300_780/500.jpg
+        
+        
+        if let url = URL(string: links[indexPath.row].img  ?? "https://media.guim.co.uk/208c837d2ca2fdc5c5ffb5e7e3d6a6c4afed2d82/0_0_1300_780/500.jpg"){
+            cell.imageThumbnail.load.request(with: url, onCompletion: { image, error, operation in
+                //print("image \(String(describing: image?.size)), render-image \(String(describing: cell.imageThumbnail.image?.size))")
+                if operation == .network {
+                    let transition = CATransition()
+                    transition.duration = 0.5
+                    transition.type = kCATransitionFade
+                    cell.imageThumbnail.layer.add(transition, forKey: nil)
+                    cell.imageThumbnail.image = image
+                }
+            })
+        }
+        
+        
+        cell.labelData.text = links[indexPath.row].webPublicationDate
+        cell.labelNoticia.text = links[indexPath.row].webTitle
         
         return cell
     }
     
-    func pullRefreshSessoes(){
+    override func scrollViewDidScroll(_ scrollView: UIScrollView){
+        if scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height {
+            pullRefreshSessao()
+        }
+    }
+    
+    func pullRefreshSessao(){
         if !isRefreshing {
             isRefreshing = true
-            FetchService.requestSessoes(handler: { (items) in
-                if let items = items {
-                    self.sessoes += items
-                }
-                self.tableView.reloadData()
-                self.isRefreshing = false
-            })
+            numberPage += 1
+            if let section = selectedData{
+                FetchService.requestSessao(section: section,pagesQtt: 15,page: numberPage, handler: { (items) in
+                    if let items = items {
+                        self.links += items
+                    }
+                    self.tableView.reloadData()
+                    self.isRefreshing = false
+                })
+            }
         }
     }
     

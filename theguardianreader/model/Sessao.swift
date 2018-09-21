@@ -7,26 +7,29 @@
 //
 
 import UIKit
+import ObjectMapper
 
 /*
 "id": "crosswords",
 "webTitle": "Crosswords",
-"webUrl": "https://www.theguardian.com/crosswords",
 "apiUrl": "https://content.guardianapis.com/crosswords"
 */
 
-class Sessao {
-    let id : String?
-    let webTitle : String?
-    let webUrl : String?
-    let apiUrl : String?
+class Sessao: Mappable {
+   
+    var id : String?
+    var webTitle : String?
+    var apiUrl : String?
     
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        id = try values.decodeIfPresent(String.self, forKey: .id)
-        webTitle = try values.decodeIfPresent(String.self, forKey: .webTitle)
-        webUrl = try values.decodeIfPresent(String.self, forKey: .webUrl)
-        apiUrl = try values.decodeIfPresent(String.self, forKey: .apiUrl)
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        id <- map["id"]
+        webTitle <- map["webTitle"]
+        apiUrl <- map["apiUrl"]
+        //print("\(id) - \(webTitle) - \(apiUrl)")
     }
     
 }
