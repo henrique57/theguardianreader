@@ -32,19 +32,20 @@ class SessaoTableViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationViewController = segue.destination as? NoticiaSessaoTableViewController,
-            let sender = sender as? String {
-            destinationViewController.selectedData = sender
+            let sender = sender as? Sessao {
+                destinationViewController.selectedData = sender.id
+                destinationViewController.titulo = sender.webTitle
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "listaNoticiasSessao", sender: sessoes[indexPath.row].id)
+        self.performSegue(withIdentifier: "listaNoticiasSessao", sender: sessoes[indexPath.row])
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sessaoCelula", for: indexPath) as! SessaoTableViewCell
 
-        cell.labelTitle.text = sessoes[indexPath.row].id
+        cell.labelTitle.text = sessoes[indexPath.row].webTitle
         return cell
     }
     

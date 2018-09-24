@@ -18,9 +18,14 @@ class NoticiaViewController: UIViewController {
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var labelDate: UILabel!
     @IBOutlet weak var labelSessao: UILabel!
+    @IBOutlet weak var labelNoticia: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        labelTitle.text = ""
+        labelDate.text = ""
+        labelSessao.text = ""
+        labelNoticia.text = ""
         pullNoticia()
     }
 
@@ -30,9 +35,9 @@ class NoticiaViewController: UIViewController {
     
     func pullNews(noticia: Noticia){
         labelTitle.text = noticia.headline
-        labelDate.text = noticia.firstPublicationDate
+        labelDate.text = ApiService.formataData(data: noticia.firstPublicationDate)
         labelSessao.text = noticia.sectionName
-        textVNoticia.text = noticia.bodyText
+        labelNoticia.text = noticia.bodyText
     }
     
     func pullNoticia(){

@@ -25,6 +25,12 @@ class Sessao: Mappable {
         
     }
     
+    init (id: String?, webTitle: String?, apiUrl: String?){
+        self.id = id
+        self.webTitle = webTitle
+        self.apiUrl = apiUrl
+    }
+    
     func mapping(map: Map) {
         id <- map["id"]
         webTitle <- map["webTitle"]

@@ -13,11 +13,12 @@ class NoticiaSessaoTableViewController: UITableViewController {
 
     var numberPage : Int = 0
     var selectedData: String?
+    var titulo: String?
     var isRefreshing : Bool = false
     var links = [NoticiaSessao]()
  
     override func viewWillAppear(_ animated: Bool) {
-        self.title = selectedData
+        self.title = titulo
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,8 +68,9 @@ class NoticiaSessaoTableViewController: UITableViewController {
             })
         }
         
+        cell.labelData.text = ApiService.formataData(data: links[indexPath.row].webPublicationDate)
+        //cell.labelData.text = links[indexPath.row].webPublicationDate
         
-        cell.labelData.text = links[indexPath.row].webPublicationDate
         cell.labelNoticia.text = links[indexPath.row].webTitle
         
         return cell

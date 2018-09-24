@@ -12,6 +12,7 @@ import AlamofireObjectMapper
 typealias JsonSessaoHandler = (([Sessao]?) -> ())
 typealias JsonNoticiaSessaoHandler = (([NoticiaSessao]?) -> ())
 typealias JsonNoticiaHandler = ((Noticia?) -> ())
+typealias JsonPesquisaHandler = (([Pesquisa]?) -> ())
 
 
 class FetchService {
@@ -44,6 +45,25 @@ class FetchService {
                 
             case .success(let value) :
                 if let noticias = value.noticias {
+                    if let handlerUnwrapped = handler {
+                        handlerUnwrapped(noticias)
+                    }
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    static func requestPesquisa(section: String, query: String, handler: JsonPesquisaHandler?){
+        let resource = "search";
+        Alamofire.request(LinkManager.getUriPesquisa(section: section, recurso: resource, query: query)).responseObject {
+            (response: DataResponse<PesquisaResponse>) in
+            
+            switch(response.result){
+                
+            case .success(let value) :
+                if let noticias = value.pesquisa {
                     if let handlerUnwrapped = handler {
                         handlerUnwrapped(noticias)
                     }

@@ -9,16 +9,24 @@
 import Foundation
 
 class LinkManager {
+    
+    // Tags
     static let resourceTag = "<resource>"
     static let pageQttTag = "<pageQtt>"
     static let pageTag = "<page>"
+    static let queryTag = "<query>"
+    static let sectionTag = "<section>"
     
+    // Nome da plist
     static let pathFile = "dados"
     static let pathType = "plist"
     
+    // Keys na plist
     static let uriSessoes = "uriSessoes"
     static let uriSessao = "uriSessao"
     static let uriPesquisa = "uriPesquisa"
+    static let uriPesquisaSessao = "uriPesquisaSessao"
+    static let uriNoticia = "uriNoticia"
     
     static func getUriSessoes(recurso: String) -> String{
         let contentFile = contentOfFile(path: pathFile, type: pathType)
@@ -41,9 +49,25 @@ class LinkManager {
         return ""
     }
     
-    static func getUriNoticia(recurso: String) -> String{
+    static func getUriPesquisa(section: String, recurso: String, query: String) -> String{
         let contentFile = contentOfFile(path: pathFile, type: pathType)
-        if var link = contentFile?[uriPesquisa] as? String {
+        
+        if var link = ((section == "") ? contentFile?[uriPesquisa] : contentFile?[uriPesquisaSessao]) as? String {
+            link = link.replacingOccurrences(of: resourceTag, with: recurso)
+            link = link.replacingOccurrences(of: queryTag, with: query)
+            
+            if(section != ""){
+                link = link.replacingOccurrences(of: sectionTag, with: section)
+            }
+            return link
+        }
+        return ""
+    }
+    
+    static func getUriNoticia(recurso: String) -> String {
+        let contentFile = contentOfFile(path: pathFile, type: pathType)
+        
+        if var link = contentFile?[uriNoticia] as? String {
             link = link.replacingOccurrences(of: resourceTag, with: recurso)
             return link
         }
