@@ -55,9 +55,9 @@ class FetchService {
         }
     }
     
-    static func requestPesquisa(section: String, query: String, handler: JsonPesquisaHandler?){
+    static func requestPesquisa(section: String, page: Int,query: String, handler: JsonPesquisaHandler?){
         let resource = "search";
-        Alamofire.request(LinkManager.getUriPesquisa(section: section, recurso: resource, query: query)).responseObject {
+        Alamofire.request(LinkManager.getUriPesquisa(section: section,page: page, recurso: resource, query: query)).responseObject {
             (response: DataResponse<PesquisaResponse>) in
             
             switch(response.result){
