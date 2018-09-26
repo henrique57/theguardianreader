@@ -18,14 +18,14 @@ class NoticiaViewController: UIViewController {
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var labelDate: UILabel!
     @IBOutlet weak var labelSessao: UILabel!
-    @IBOutlet weak var labelNoticia: UILabel!
+    @IBOutlet weak var textViewNoticia: UITextView!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         labelTitle.text = ""
         labelDate.text = ""
         labelSessao.text = ""
-        labelNoticia.text = ""
+        textViewNoticia.text = ""
         pullNoticia()
     }
 
@@ -39,7 +39,7 @@ class NoticiaViewController: UIViewController {
             self.imageViewThumbnail.load.request(with: url, onCompletion: { image, error, operation in
                 if operation == .network {
                     let transition = CATransition()
-                    transition.duration = 0.5
+                    transition.duration = 0.2
                     transition.type = kCATransitionFade
                     self.imageViewThumbnail.layer.add(transition, forKey: nil)
                     self.imageViewThumbnail.image = image
@@ -50,7 +50,21 @@ class NoticiaViewController: UIViewController {
         labelTitle.text = noticia.headline
         labelDate.text = ApiService.formataData(data: noticia.firstPublicationDate)
         labelSessao.text = noticia.sectionName
-        labelNoticia.text = noticia.bodyText
+        //labelNoticia.text = noticia.bodyText
+        
+        //noticia.body?.replacingOccurrences(of: "width: 1000", with: "width: 100")
+        //noticia.body?.replacingOccurrences(of: "height: 1000", with: "height: 100")
+        
+        if let body =  noticia.body{
+            if let data = body.data(using: String.Encoding.unicode){
+                let attrStr = try? NSAttributedString(
+                    data: data,
+                    options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html],
+                    documentAttributes: nil)
+                //labelNoticia.attributedText = attrStr
+                textViewNoticia.attributedText = attrStr
+            }
+        }
     }
     
     func pullNoticia(){

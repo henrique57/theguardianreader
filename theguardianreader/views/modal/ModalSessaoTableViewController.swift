@@ -23,9 +23,8 @@ class ModalSessaoTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         pullSessoes()
-        
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,6 +59,9 @@ class ModalSessaoTableViewController: UITableViewController {
         switch indexPath.row {
         case 0:
             cell.labelSessao.text = sessao.webTitle
+            if sessoesSelecionadas.count == sessoes.count{
+                cell.accessoryType = .checkmark
+            }
         default:
             cell.labelSessao.text = sessoes[indexPath.row-1].webTitle
             let selectedRow = sessoesSelecionadas.contains(indexPath.row - 1)
@@ -89,15 +91,19 @@ class ModalSessaoTableViewController: UITableViewController {
                 } else if let selectedIndex = sessoesSelecionadas.index(where: {$0 == dataIndex}) {
                     sessoesSelecionadas.remove(at: selectedIndex)
                     cell.accessoryType = .none
+                    
                     if(todasSelecionadas){
                         if let firstCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)){
                             firstCell.accessoryType = .none
                         }
                     }
+                    
                 }
             } else if cell.accessoryType == .none {
                 if(indexPath.row == 0){
+                    
                     todasSelecionadas = true
+                    
                     let cells = self.tableView.visibleCells
                     cells.forEach{ $0.accessoryType = .checkmark }
                     sessoesSelecionadas.removeAll()

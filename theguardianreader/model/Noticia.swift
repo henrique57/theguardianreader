@@ -22,6 +22,7 @@ class Noticia: Mappable {
     var firstPublicationDate: String?
     var sectionName: String?
     var thumbnail: String?
+    var body: String?
     var bodyText: String?
     
     init (){
@@ -37,6 +38,7 @@ class Noticia: Mappable {
         self.firstPublicationDate <- map["fields.firstPublicationDate"]
         self.sectionName <- map["sectionName"]
         self.thumbnail <- map["fields.thumbnail"]
+        self.body <- map["fields.body"]
         self.bodyText <- map["fields.bodyText"]
     }
     

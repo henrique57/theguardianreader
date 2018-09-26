@@ -52,8 +52,8 @@ class NoticiaSessaoTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "noticiaCelula", for: indexPath) as! NoticiaSessaoTableViewCell
 
         // Configure the cell...
-        //https://media.guim.co.uk/208c837d2ca2fdc5c5ffb5e7e3d6a6c4afed2d82/0_0_1300_780/500.jpg
-        
+       
+        // https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif
         
         if let url = URL(string: links[indexPath.row].img  ?? "https://media.guim.co.uk/208c837d2ca2fdc5c5ffb5e7e3d6a6c4afed2d82/0_0_1300_780/500.jpg"){
             cell.imageThumbnail.load.request(with: url, onCompletion: { image, error, operation in

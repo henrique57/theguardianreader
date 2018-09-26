@@ -151,12 +151,6 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gLP-8D-f01">
-                                        <rect key="frame" x="10" y="380" width="355" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uSs-Ec-KNZ">
                                         <rect key="frame" x="5" y="5" width="365" height="225"/>
                                         <constraints>
@@ -173,24 +167,38 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jPU-Gk-IiF">
+                                        <rect key="frame" x="10" y="365.5" width="355" height="200"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <attributedString key="attributedText">
+                                            <fragment>
+                                                <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="system" size="14"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="uSs-Ec-KNZ" firstAttribute="top" secondItem="EgT-85-h2e" secondAttribute="top" constant="5" id="1WK-ja-xez"/>
                                     <constraint firstItem="Gia-yc-cpb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="EgT-85-h2e" secondAttribute="leading" constant="20" symbolic="YES" id="68P-ud-8wL"/>
                                     <constraint firstItem="H4i-dn-7PC" firstAttribute="leading" secondItem="EgT-85-h2e" secondAttribute="leading" constant="10" id="7Gn-vd-AmZ"/>
                                     <constraint firstItem="H4i-dn-7PC" firstAttribute="top" secondItem="uSs-Ec-KNZ" secondAttribute="bottom" constant="15" id="9Pk-RQ-8cT"/>
-                                    <constraint firstItem="gLP-8D-f01" firstAttribute="top" secondItem="zlM-ev-euo" secondAttribute="bottom" constant="35" id="CaU-aD-eXN"/>
-                                    <constraint firstAttribute="trailing" secondItem="gLP-8D-f01" secondAttribute="trailing" constant="10" id="EwN-j6-0Sr"/>
                                     <constraint firstAttribute="width" constant="375" id="Fxg-Ce-NTL"/>
                                     <constraint firstAttribute="height" constant="600" id="Ghm-gS-Ji7"/>
+                                    <constraint firstItem="jPU-Gk-IiF" firstAttribute="top" secondItem="Gia-yc-cpb" secondAttribute="bottom" constant="20" id="JIL-sl-MkC"/>
+                                    <constraint firstAttribute="bottom" secondItem="jPU-Gk-IiF" secondAttribute="bottom" id="Mkr-nM-VUz"/>
                                     <constraint firstItem="uSs-Ec-KNZ" firstAttribute="leading" secondItem="EgT-85-h2e" secondAttribute="leading" constant="5" id="PD6-bB-fZg"/>
-                                    <constraint firstItem="gLP-8D-f01" firstAttribute="leading" secondItem="EgT-85-h2e" secondAttribute="leading" constant="10" id="QQG-H8-nzn"/>
                                     <constraint firstItem="zlM-ev-euo" firstAttribute="top" secondItem="H4i-dn-7PC" secondAttribute="bottom" constant="15" id="YSt-98-Njg"/>
                                     <constraint firstAttribute="trailing" secondItem="Gia-yc-cpb" secondAttribute="trailing" constant="10" id="Zno-gA-ITd"/>
+                                    <constraint firstItem="jPU-Gk-IiF" firstAttribute="leading" secondItem="EgT-85-h2e" secondAttribute="leading" constant="10" id="e2w-BG-Brd"/>
                                     <constraint firstAttribute="trailing" secondItem="uSs-Ec-KNZ" secondAttribute="trailing" constant="5" id="g6O-YI-1fW"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="zlM-ev-euo" secondAttribute="trailing" constant="20" symbolic="YES" id="ifP-jH-cjd"/>
-                                    <constraint firstAttribute="bottom" secondItem="gLP-8D-f01" secondAttribute="bottom" id="mkW-x3-fKz"/>
                                     <constraint firstItem="Gia-yc-cpb" firstAttribute="height" secondItem="zlM-ev-euo" secondAttribute="height" id="ofh-V8-SXR"/>
+                                    <constraint firstAttribute="trailing" secondItem="jPU-Gk-IiF" secondAttribute="trailing" constant="10" id="pEs-Dq-obP"/>
                                     <constraint firstAttribute="trailing" secondItem="H4i-dn-7PC" secondAttribute="trailing" constant="10" id="s01-Sm-p83"/>
                                     <constraint firstItem="zlM-ev-euo" firstAttribute="leading" secondItem="EgT-85-h2e" secondAttribute="leading" constant="10" id="wQp-da-ezU"/>
                                     <constraint firstItem="Gia-yc-cpb" firstAttribute="centerY" secondItem="zlM-ev-euo" secondAttribute="centerY" id="xsH-gH-ucZ"/>
@@ -207,9 +215,9 @@
                     <connections>
                         <outlet property="imageViewThumbnail" destination="uSs-Ec-KNZ" id="V64-gC-7JF"/>
                         <outlet property="labelDate" destination="zlM-ev-euo" id="WhR-bR-Gdh"/>
-                        <outlet property="labelNoticia" destination="gLP-8D-f01" id="Za7-dK-kwO"/>
                         <outlet property="labelSessao" destination="Gia-yc-cpb" id="MvI-5l-Vu9"/>
                         <outlet property="labelTitle" destination="H4i-dn-7PC" id="pzn-HA-CGY"/>
+                        <outlet property="textViewNoticia" destination="jPU-Gk-IiF" id="o3S-fp-AJh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TKX-em-Ciq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -448,6 +456,6 @@
         <image name="searchicon" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nug-lh-eT0"/>
+        <segue reference="9vu-74-772"/>
     </inferredMetricsTieBreakers>
 </document>
