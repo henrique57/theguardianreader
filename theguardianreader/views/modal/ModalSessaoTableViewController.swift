@@ -34,7 +34,12 @@ class ModalSessaoTableViewController: UITableViewController {
         // -------------------------------------------
         // COLOCAR ARRAY COM TODOS AS SEÇÕES ESCOLHIDAS
         // -------------------------------------------
+        //print ("\(sessoes.count) - \(sessoesSelecionadas.count)")
 
+//        if(sessoes.count ==  sessoesSelecionadas.count){
+//            sessoesSelecionadas.removeAll()
+//        }
+        
         delegate?.getSessao(with: prepareData())
 
         self.dismiss(animated: true)
@@ -58,7 +63,10 @@ class ModalSessaoTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "modalSessaoCelula", for: indexPath) as! ModalSessaoTableViewCell
         // Configure the cell...
         
-        if(indexPath.row != 0){
+        switch indexPath.row {
+        case 0:
+            cell.labelSessao.text = sessao.webTitle
+        default:
             cell.labelSessao.text = sessoes[indexPath.row-1].webTitle
             let selectedRow = sessoesSelecionadas.contains(indexPath.row - 1)
             if selectedRow == true {
@@ -66,9 +74,6 @@ class ModalSessaoTableViewController: UITableViewController {
             } else {
                 cell.accessoryType = .none
             }
-        }else{
-            
-            cell.labelSessao.text = sessao.webTitle
         }
         
         return cell
@@ -76,10 +81,8 @@ class ModalSessaoTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        
         if let cell = tableView.cellForRow(at: indexPath){
             let dataIndex = indexPath.row - 1
-            
             
             if cell.accessoryType == .checkmark {
                 if(indexPath.row == 0){
@@ -87,7 +90,6 @@ class ModalSessaoTableViewController: UITableViewController {
                     cells.forEach{ $0.accessoryType = .none }
                     sessoesSelecionadas.removeAll()
                 } else if let selectedIndex = sessoesSelecionadas.index(where: {$0 == dataIndex}) {
-                   
                     sessoesSelecionadas.remove(at: selectedIndex)
                     cell.accessoryType = .none
                 }
@@ -96,6 +98,9 @@ class ModalSessaoTableViewController: UITableViewController {
                     let cells = self.tableView.visibleCells
                     cells.forEach{ $0.accessoryType = .checkmark }
                     sessoesSelecionadas.removeAll()
+                    for (index, _) in sessoes.enumerated() {
+                        sessoesSelecionadas.append(index)
+                    }
                 } else {
                     sessoesSelecionadas.append(dataIndex)
                     cell.accessoryType = .checkmark
@@ -118,11 +123,19 @@ class ModalSessaoTableViewController: UITableViewController {
         var stringSelecionados = ""
         
         sessoesSelecionadas.forEach { index in
+            // --------------------
+            // ALTERAR CONCATENAÇÃO DO | ou \u{7C}
+            // --------------------
+            
             if let id = sessoes[index].id {
                 stringSelecionados.append("\(id)|")
             }
         }
-        return String(stringSelecionados.dropLast())
+        let link = String(stringSelecionados.dropLast())
+        if let link = link.addingPercentEncoding(withAllowedCharacters: NSMutableCharacterSet.alphanumeric() as CharacterSet){
+            return link
+        }
+        return ""
     }
     
     

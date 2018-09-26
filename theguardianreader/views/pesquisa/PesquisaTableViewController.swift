@@ -108,9 +108,9 @@ class PesquisaTableViewController: UITableViewController, ModalSessaoDelegate {
         // -------------------------------------------
         
         if let pesquisa = searchBarNoticia.text  {
-            //self.section = data
+            self.section = data
             self.pesquisa.removeAll()
-            print(data)
+            //print(data)
             pullRefreshNoticias(section: data, pesquisa: pesquisa)
         }
     }
@@ -124,7 +124,11 @@ extension PesquisaTableViewController:  UISearchBarDelegate{
         // COLOCAR AÇÃO DA PESQUISA
         // ------------------------
         if let text = searchBarNoticia.text{
+            self.numberPage = 0
+            pesquisa.removeAll()
             pullRefreshNoticias(section: section, pesquisa: text)
+            
+            self.tableView.reloadData()
         }
     }
 }

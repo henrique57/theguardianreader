@@ -55,14 +55,17 @@ class LinkManager {
         
         if var link = ((section == "") ? contentFile?[uriPesquisa] : contentFile?[uriPesquisaSessao]) as? String {
             link = link.replacingOccurrences(of: resourceTag, with: recurso)
+            
             link = link.replacingOccurrences(of: queryTag, with: query)
+            
             link = link.replacingOccurrences(of: pageQttTag, with: "15")
             link = link.replacingOccurrences(of: pageTag, with: "\(page)")
             
             if(section != ""){
                 link = link.replacingOccurrences(of: sectionTag, with: section)
             }
-            print(link)
+            //print(link)
+            
             return link
         }
         return ""
