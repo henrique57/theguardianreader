@@ -15,14 +15,16 @@ class PesquisaTableViewController: UITableViewController, ModalSessaoDelegate {
     var section = ""
     var numberPage : Int = 0
     var isRefreshing : Bool = false
+    
+    var sessoes = [Sessao]()
+    var sessoesSelecionadas = [Int]()
 
     @IBOutlet weak var buttonFilter: UIButton!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        if let webTitle = section.webTitle{
-//            buttonFilter.setTitle("Filter: \(webTitle)", for: .normal)
-//        }
+
+        //pullRefreshNoticias(section: section, pesquisa: "")
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,7 +38,7 @@ class PesquisaTableViewController: UITableViewController, ModalSessaoDelegate {
         // ----------- ACTION BUTTON FILTER -------
         numberPage = 0
         isRefreshing = false
-        self.performSegue(withIdentifier: "selecionaSessaoTv", sender: "")
+        self.performSegue(withIdentifier: "selecionaSessaoTv", sender: section)
     }
     // MARK: - Table view data source
 
@@ -59,6 +61,7 @@ class PesquisaTableViewController: UITableViewController, ModalSessaoDelegate {
         if let navController = segue.destination as? UINavigationController,
             let destinationViewController = navController.viewControllers.first as? ModalSessaoTableViewController {
             destinationViewController.delegate = self
+            destinationViewController.sessoesSelecionadas = self.sessoesSelecionadas
         }        
     }
     
@@ -102,17 +105,33 @@ class PesquisaTableViewController: UITableViewController, ModalSessaoDelegate {
         }
     }
         
-    func getSessao(with data: String){
+    func getSessao(with sessoesSelecionadas: [Int], sessoes: [Sessao]){
         // -------------------------------------------
         // PESQUISAR PELAS SECTIONS DESCRITAS
         // -------------------------------------------
         
         if let pesquisa = searchBarNoticia.text  {
-            self.section = data
+            self.sessoesSelecionadas = sessoesSelecionadas
+            self.sessoes = sessoes
+            
             self.pesquisa.removeAll()
-            //print(data)
-            pullRefreshNoticias(section: data, pesquisa: pesquisa)
+            
+            pullRefreshNoticias(section: prepareData(), pesquisa: pesquisa)
         }
+    }
+    
+    func prepareData() -> String{
+        var stringSelecionados = ""
+        
+        sessoesSelecionadas.forEach { index in
+            if let id = sessoes[index].id {
+                stringSelecionados.append("\(id)|")
+            }
+        }
+        // Save the sections to do the refresh later
+        self.section = String(stringSelecionados.dropLast())
+        
+        return String(stringSelecionados.dropLast())
     }
 
 }

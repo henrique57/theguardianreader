@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ModalSessaoDelegate {
-    func getSessao(with data: String)
+    func getSessao(with sessoesSelecionadas: [Int], sessoes: [Sessao])
 }
 
 class ModalSessaoTableViewController: UITableViewController {
@@ -17,12 +17,15 @@ class ModalSessaoTableViewController: UITableViewController {
     var sessao = Sessao(id: "",webTitle: "All", apiUrl: "")
     var sessoes = [Sessao]()
     var sessoesSelecionadas = [Int]()
+    var todasSelecionadas: Bool = false
     
     var delegate: ModalSessaoDelegate?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         pullSessoes()
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,16 +34,7 @@ class ModalSessaoTableViewController: UITableViewController {
     }
 
     @IBAction func escolherSessao(_ sender: Any) {
-        // -------------------------------------------
-        // COLOCAR ARRAY COM TODOS AS SEÇÕES ESCOLHIDAS
-        // -------------------------------------------
-        //print ("\(sessoes.count) - \(sessoesSelecionadas.count)")
-
-//        if(sessoes.count ==  sessoesSelecionadas.count){
-//            sessoesSelecionadas.removeAll()
-//        }
-        
-        delegate?.getSessao(with: prepareData())
+        delegate?.getSessao(with: self.sessoesSelecionadas, sessoes: self.sessoes)
 
         self.dismiss(animated: true)
     }
@@ -89,12 +83,21 @@ class ModalSessaoTableViewController: UITableViewController {
                     let cells = self.tableView.visibleCells
                     cells.forEach{ $0.accessoryType = .none }
                     sessoesSelecionadas.removeAll()
+                    
+                    todasSelecionadas = false
+                    
                 } else if let selectedIndex = sessoesSelecionadas.index(where: {$0 == dataIndex}) {
                     sessoesSelecionadas.remove(at: selectedIndex)
                     cell.accessoryType = .none
+                    if(todasSelecionadas){
+                        if let firstCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)){
+                            firstCell.accessoryType = .none
+                        }
+                    }
                 }
             } else if cell.accessoryType == .none {
                 if(indexPath.row == 0){
+                    todasSelecionadas = true
                     let cells = self.tableView.visibleCells
                     cells.forEach{ $0.accessoryType = .checkmark }
                     sessoesSelecionadas.removeAll()
@@ -102,6 +105,11 @@ class ModalSessaoTableViewController: UITableViewController {
                         sessoesSelecionadas.append(index)
                     }
                 } else {
+                    if(sessoesSelecionadas.count == (sessoes.count-1)){
+                        if let firstCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)){
+                            firstCell.accessoryType = .checkmark
+                        }
+                    }
                     sessoesSelecionadas.append(dataIndex)
                     cell.accessoryType = .checkmark
                 }
@@ -123,19 +131,11 @@ class ModalSessaoTableViewController: UITableViewController {
         var stringSelecionados = ""
         
         sessoesSelecionadas.forEach { index in
-            // --------------------
-            // ALTERAR CONCATENAÇÃO DO | ou \u{7C}
-            // --------------------
-            
             if let id = sessoes[index].id {
                 stringSelecionados.append("\(id)|")
             }
         }
-        let link = String(stringSelecionados.dropLast())
-        if let link = link.addingPercentEncoding(withAllowedCharacters: NSMutableCharacterSet.alphanumeric() as CharacterSet){
-            return link
-        }
-        return ""
+        return String(stringSelecionados.dropLast())
     }
     
     

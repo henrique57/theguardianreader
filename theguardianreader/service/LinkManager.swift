@@ -8,7 +8,7 @@
 
 import Foundation
 
-class LinkManager {
+class LinkManager { 
     
     // Tags
     static let resourceTag = "<resource>"
@@ -62,7 +62,9 @@ class LinkManager {
             link = link.replacingOccurrences(of: pageTag, with: "\(page)")
             
             if(section != ""){
-                link = link.replacingOccurrences(of: sectionTag, with: section)
+                if let section = section.addingPercentEncoding(withAllowedCharacters: NSMutableCharacterSet.alphanumeric() as CharacterSet){
+                    link = link.replacingOccurrences(of: sectionTag, with: section)
+                }
             }
             //print(link)
             
