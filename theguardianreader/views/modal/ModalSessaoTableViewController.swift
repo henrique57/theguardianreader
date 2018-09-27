@@ -9,21 +9,23 @@
 import UIKit
 
 protocol ModalSessaoDelegate {
-    func getSessao(with sessoesSelecionadas: [Int], sessoes: [Sessao])
+    func getSessao(with selectedSections: [Int : String])
 }
 
 class ModalSessaoTableViewController: UITableViewController {
 
     var sessao = Sessao(id: "",webTitle: "All", apiUrl: "")
     var sessoes = [Sessao]()
-    var sessoesSelecionadas = [Int]()
+    
+    //var sessoesSelecionadas = [Int]()
+    var selectedSections = [Int : String]()
+    
     var todasSelecionadas: Bool = false
     
     var delegate: ModalSessaoDelegate?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         pullSessoes()
     }
 
@@ -33,8 +35,7 @@ class ModalSessaoTableViewController: UITableViewController {
     }
 
     @IBAction func escolherSessao(_ sender: Any) {
-        delegate?.getSessao(with: self.sessoesSelecionadas, sessoes: self.sessoes)
-
+        delegate?.getSessao(with: self.selectedSections)
         self.dismiss(animated: true)
     }
     
@@ -49,7 +50,6 @@ class ModalSessaoTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return sessoes.count
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -59,13 +59,10 @@ class ModalSessaoTableViewController: UITableViewController {
         switch indexPath.row {
         case 0:
             cell.labelSessao.text = sessao.webTitle
-            if sessoesSelecionadas.count == sessoes.count{
-                cell.accessoryType = .checkmark
-            }
+            cell.accessoryType = todasSelecionadas ? .checkmark : .none
         default:
             cell.labelSessao.text = sessoes[indexPath.row-1].webTitle
-            let selectedRow = sessoesSelecionadas.contains(indexPath.row - 1)
-            if selectedRow == true {
+            if selectedSections[indexPath.row - 1] != nil{
                 cell.accessoryType = .checkmark
             } else {
                 cell.accessoryType = .none
@@ -76,52 +73,45 @@ class ModalSessaoTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cells = self.tableView.visibleCells
         
         if let cell = tableView.cellForRow(at: indexPath){
-            let dataIndex = indexPath.row - 1
-            
             if cell.accessoryType == .checkmark {
                 if(indexPath.row == 0){
-                    let cells = self.tableView.visibleCells
                     cells.forEach{ $0.accessoryType = .none }
-                    sessoesSelecionadas.removeAll()
-                    
-                    todasSelecionadas = false
-                    
-                } else if let selectedIndex = sessoesSelecionadas.index(where: {$0 == dataIndex}) {
-                    sessoesSelecionadas.remove(at: selectedIndex)
-                    cell.accessoryType = .none
-                    
-                    if(todasSelecionadas){
-                        if let firstCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)){
-                            firstCell.accessoryType = .none
-                        }
+                    selectedSections.removeAll()
+                  } else {
+                    if(selectedSections.count == sessoes.count){
+                        marcaDesmarcaCell(cell: cell)
                     }
-                    
+                    selectedSections.removeValue(forKey: indexPath.row-1)
+                    cell.accessoryType = .none
                 }
             } else if cell.accessoryType == .none {
                 if(indexPath.row == 0){
-                    
-                    todasSelecionadas = true
-                    
-                    let cells = self.tableView.visibleCells
                     cells.forEach{ $0.accessoryType = .checkmark }
-                    sessoesSelecionadas.removeAll()
-                    for (index, _) in sessoes.enumerated() {
-                        sessoesSelecionadas.append(index)
+                    selectedSections.removeAll()
+                    for (index, value) in sessoes.enumerated() {
+                        selectedSections[index] = value.id
                     }
                 } else {
-                    if(sessoesSelecionadas.count == (sessoes.count-1)){
-                        if let firstCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)){
-                            firstCell.accessoryType = .checkmark
-                        }
-                    }
-                    sessoesSelecionadas.append(dataIndex)
+                    selectedSections[indexPath.row-1] = sessoes[indexPath.row-1].id
                     cell.accessoryType = .checkmark
+                    if(selectedSections.count == sessoes.count){
+                        marcaDesmarcaCell(cell: cell)
+                    }
                 }
             }
+            todasSelecionadas = selectedSections.count == (sessoes.count) ? true : false
         }
-        
+    }
+    
+    func marcaDesmarcaCell(cell: UITableViewCell){
+        if let firstCell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ModalSessaoTableViewCell {
+            if firstCell.labelSessao.text == sessao.webTitle {
+                firstCell.accessoryType = (firstCell.accessoryType == .checkmark) ? .none : .checkmark
+            }
+        }
     }
     
     func pullSessoes(){
@@ -129,20 +119,9 @@ class ModalSessaoTableViewController: UITableViewController {
             if let items = items {
                 self.sessoes += items
             }
+            self.todasSelecionadas = self.selectedSections.count == (self.sessoes.count) ? true : false
             self.tableView.reloadData()
         })
     }
-    
-    func prepareData() -> String{
-        var stringSelecionados = ""
-        
-        sessoesSelecionadas.forEach { index in
-            if let id = sessoes[index].id {
-                stringSelecionados.append("\(id)|")
-            }
-        }
-        return String(stringSelecionados.dropLast())
-    }
-    
     
 }

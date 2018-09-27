@@ -68,8 +68,7 @@ class NoticiaSessaoTableViewController: UITableViewController {
             })
         }
         
-        cell.labelData.text = ApiService.formataData(data: links[indexPath.row].webPublicationDate)
-        //cell.labelData.text = links[indexPath.row].webPublicationDate
+        cell.labelData.text = links[indexPath.row].webPublicationDate?.formatData()
         
         cell.labelNoticia.text = links[indexPath.row].webTitle
         

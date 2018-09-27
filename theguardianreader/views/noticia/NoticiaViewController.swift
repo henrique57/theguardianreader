@@ -48,21 +48,15 @@ class NoticiaViewController: UIViewController {
         }
         
         labelTitle.text = noticia.headline
-        labelDate.text = ApiService.formataData(data: noticia.firstPublicationDate)
+        labelDate.text = noticia.firstPublicationDate?.formatData()
         labelSessao.text = noticia.sectionName
-        //labelNoticia.text = noticia.bodyText
-        
+                
         //noticia.body?.replacingOccurrences(of: "width: 1000", with: "width: 100")
         //noticia.body?.replacingOccurrences(of: "height: 1000", with: "height: 100")
         
         if let body =  noticia.body{
-            if let data = body.data(using: String.Encoding.unicode){
-                let attrStr = try? NSAttributedString(
-                    data: data,
-                    options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html],
-                    documentAttributes: nil)
-                //labelNoticia.attributedText = attrStr
-                textViewNoticia.attributedText = attrStr
+            if let data = body.formatAttribute(){                
+                textViewNoticia.attributedText = data
             }
         }
     }

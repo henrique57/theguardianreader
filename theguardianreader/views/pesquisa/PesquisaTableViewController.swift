@@ -14,10 +14,12 @@ class PesquisaTableViewController: UITableViewController, ModalSessaoDelegate {
     var pesquisa = [Pesquisa]()
     var section = ""
     var numberPage : Int = 0
-    var isRefreshing : Bool = false
+    var isRefreshing : Bool = false    
     
-    var sessoes = [Sessao]()
-    var sessoesSelecionadas = [Int]()
+    var selectedSections = [Int : String]()
+    
+    //var sessoes = [Sessao]()
+    //var sessoesSelecionadas = [Int]()
 
     @IBOutlet weak var buttonFilter: UIButton!
     
@@ -61,7 +63,7 @@ class PesquisaTableViewController: UITableViewController, ModalSessaoDelegate {
         if let navController = segue.destination as? UINavigationController,
             let destinationViewController = navController.viewControllers.first as? ModalSessaoTableViewController {
             destinationViewController.delegate = self
-            destinationViewController.sessoesSelecionadas = self.sessoesSelecionadas
+            destinationViewController.selectedSections = self.selectedSections
         }        
     }
     
@@ -75,7 +77,7 @@ class PesquisaTableViewController: UITableViewController, ModalSessaoDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "pesquisaCelula", for: indexPath) as! PesquisaTableViewCell
         
         cell.labelNoticia.text = pesquisa[(indexPath.row)].webTitle
-        cell.labelDataPublicacao.text = ApiService.formataData(data: pesquisa[(indexPath.row)].webPublicationDate)
+        cell.labelDataPublicacao.text = pesquisa[(indexPath.row)].webPublicationDate?.formatData()
         cell.labelSessao.text = pesquisa[(indexPath.row)].section
         
         return cell
@@ -93,8 +95,11 @@ class PesquisaTableViewController: UITableViewController, ModalSessaoDelegate {
         if !isRefreshing {
             isRefreshing = true
             numberPage += 1
-           
+            
+           //----
             let query = pesquisa.replacingOccurrences(of: " ", with: "+")
+            //----
+            
             FetchService.requestPesquisa(section: section,page: numberPage, query: query ,handler: { (items) in
                 if let items = items {
                     self.pesquisa += items
@@ -105,15 +110,13 @@ class PesquisaTableViewController: UITableViewController, ModalSessaoDelegate {
         }
     }
         
-    func getSessao(with sessoesSelecionadas: [Int], sessoes: [Sessao]){
+    func getSessao(with selectedSections: [Int : String]){
         // -------------------------------------------
         // PESQUISAR PELAS SECTIONS DESCRITAS
         // -------------------------------------------
         
         if let pesquisa = searchBarNoticia.text  {
-            self.sessoesSelecionadas = sessoesSelecionadas
-            self.sessoes = sessoes
-            
+            self.selectedSections = selectedSections
             self.pesquisa.removeAll()
             
             pullRefreshNoticias(section: prepareData(), pesquisa: pesquisa)
@@ -123,12 +126,11 @@ class PesquisaTableViewController: UITableViewController, ModalSessaoDelegate {
     func prepareData() -> String{
         var stringSelecionados = ""
         
-        sessoesSelecionadas.forEach { index in
-            if let id = sessoes[index].id {
-                stringSelecionados.append("\(id)|")
-            }
+        [String](selectedSections.values).forEach { (id) in
+            stringSelecionados.append("\(id)|")
         }
-        // Save the sections to do the refresh later
+        
+        // Save sections to do the refresh later
         self.section = String(stringSelecionados.dropLast())
         
         return String(stringSelecionados.dropLast())

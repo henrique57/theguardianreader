@@ -49,7 +49,6 @@ class LinkManager {
         return ""
     }
     
-     // --------------
     static func getUriPesquisa(section: String,page: Int, recurso: String, query: String) -> String{
         let contentFile = contentOfFile(path: pathFile, type: pathType)
         
@@ -62,12 +61,9 @@ class LinkManager {
             link = link.replacingOccurrences(of: pageTag, with: "\(page)")
             
             if(section != ""){
-                if let section = section.addingPercentEncoding(withAllowedCharacters: NSMutableCharacterSet.alphanumeric() as CharacterSet){
-                    link = link.replacingOccurrences(of: sectionTag, with: section)
-                }
+                let section = section.getPercentString()
+                link = link.replacingOccurrences(of: sectionTag, with: section)
             }
-            //print(link)
-            
             return link
         }
         return ""
