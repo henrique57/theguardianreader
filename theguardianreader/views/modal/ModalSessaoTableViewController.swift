@@ -59,8 +59,10 @@ class ModalSessaoTableViewController: UITableViewController {
         switch indexPath.row {
         case 0:
             cell.labelSessao.text = sessao.webTitle
+            //cell.labelSessao.text = "\(indexPath.row) - \(sessao.webTitle)"
             cell.accessoryType = todasSelecionadas ? .checkmark : .none
         default:
+            //cell.labelSessao.text = "\(indexPath.row) - \(sessoes[indexPath.row-1].webTitle)"
             cell.labelSessao.text = sessoes[indexPath.row-1].webTitle
             if selectedSections[indexPath.row - 1] != nil{
                 cell.accessoryType = .checkmark
@@ -82,7 +84,7 @@ class ModalSessaoTableViewController: UITableViewController {
                     selectedSections.removeAll()
                   } else {
                     if(selectedSections.count == sessoes.count){
-                        marcaDesmarcaCell(cell: cell)
+                        marcaDesmarcaCellAll(cell: cell)
                     }
                     selectedSections.removeValue(forKey: indexPath.row-1)
                     cell.accessoryType = .none
@@ -98,7 +100,7 @@ class ModalSessaoTableViewController: UITableViewController {
                     selectedSections[indexPath.row-1] = sessoes[indexPath.row-1].id
                     cell.accessoryType = .checkmark
                     if(selectedSections.count == sessoes.count){
-                        marcaDesmarcaCell(cell: cell)
+                        marcaDesmarcaCellAll(cell: cell)
                     }
                 }
             }
@@ -106,11 +108,9 @@ class ModalSessaoTableViewController: UITableViewController {
         }
     }
     
-    func marcaDesmarcaCell(cell: UITableViewCell){
+    func marcaDesmarcaCellAll(cell: UITableViewCell){
         if let firstCell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ModalSessaoTableViewCell {
-            if firstCell.labelSessao.text == sessao.webTitle {
-                firstCell.accessoryType = (firstCell.accessoryType == .checkmark) ? .none : .checkmark
-            }
+            firstCell.accessoryType = (firstCell.accessoryType == .checkmark) ? .none : .checkmark
         }
     }
     
