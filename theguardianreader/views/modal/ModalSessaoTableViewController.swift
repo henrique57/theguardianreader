@@ -59,10 +59,8 @@ class ModalSessaoTableViewController: UITableViewController {
         switch indexPath.row {
         case 0:
             cell.labelSessao.text = sessao.webTitle
-            //cell.labelSessao.text = "\(indexPath.row) - \(sessao.webTitle)"
             cell.accessoryType = todasSelecionadas ? .checkmark : .none
         default:
-            //cell.labelSessao.text = "\(indexPath.row) - \(sessoes[indexPath.row-1].webTitle)"
             cell.labelSessao.text = sessoes[indexPath.row-1].webTitle
             if selectedSections[indexPath.row - 1] != nil{
                 cell.accessoryType = .checkmark
