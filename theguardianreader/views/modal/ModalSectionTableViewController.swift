@@ -8,25 +8,22 @@
 
 import UIKit
 
-protocol ModalSessaoDelegate {
+// MARK: - Protocol
+protocol ModalSectionDelegate {
     func getSessao(with selectedSections: [Int : String])
 }
 
-class ModalSessaoTableViewController: UITableViewController {
+class ModalSectionTableViewController: UITableViewController {
 
     var sessao = Sessao(id: "",webTitle: "All", apiUrl: "")
     var sessoes = [Sessao]()
-    
-    //var sessoesSelecionadas = [Int]()
     var selectedSections = [Int : String]()
-    
     var todasSelecionadas: Bool = false
-    
-    var delegate: ModalSessaoDelegate?
+    var delegate: ModalSectionDelegate?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        pullSessoes()
+        pullSections()
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,39 +31,27 @@ class ModalSessaoTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func escolherSessao(_ sender: Any) {
-        delegate?.getSessao(with: self.selectedSections)
-        self.dismiss(animated: true)
-    }
-    
-    // MARK: - Table view data source
-
+    // MARK: - Return the number of sections
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
+    // MARK: - Return the number of rows
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return sessoes.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "modalSessaoCelula", for: indexPath) as! ModalSectionTableViewCell
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "modalSessaoCelula", for: indexPath) as! ModalSessaoTableViewCell
         // Configure the cell...
-        
         switch indexPath.row {
         case 0:
             cell.labelSessao.text = sessao.webTitle
-            cell.accessoryType = todasSelecionadas ? .checkmark : .none
+            cell.accessoryType = (todasSelecionadas) ? .checkmark : .none
         default:
             cell.labelSessao.text = sessoes[indexPath.row-1].webTitle
-            if selectedSections[indexPath.row - 1] != nil{
-                cell.accessoryType = .checkmark
-            } else {
-                cell.accessoryType = .none
-            }
+            cell.accessoryType = (selectedSections[indexPath.row - 1] != nil) ? .checkmark : .none
         }
         
         return cell
@@ -81,9 +66,7 @@ class ModalSessaoTableViewController: UITableViewController {
                     cells.forEach{ $0.accessoryType = .none }
                     selectedSections.removeAll()
                   } else {
-                    if(selectedSections.count == sessoes.count){
-                        marcaDesmarcaCellAll(cell: cell)
-                    }
+                    if(selectedSections.count == sessoes.count){ checkUncheckFirstCell() }
                     selectedSections.removeValue(forKey: indexPath.row-1)
                     cell.accessoryType = .none
                 }
@@ -97,22 +80,29 @@ class ModalSessaoTableViewController: UITableViewController {
                 } else {
                     selectedSections[indexPath.row-1] = sessoes[indexPath.row-1].id
                     cell.accessoryType = .checkmark
-                    if(selectedSections.count == sessoes.count){
-                        marcaDesmarcaCellAll(cell: cell)
-                    }
+                    if(selectedSections.count == sessoes.count){ checkUncheckFirstCell() }
                 }
             }
             todasSelecionadas = selectedSections.count == (sessoes.count) ? true : false
         }
     }
     
-    func marcaDesmarcaCellAll(cell: UITableViewCell){
-        if let firstCell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ModalSessaoTableViewCell {
+    /// Choose the sections to be filtered
+    @IBAction func chooseSection(_ sender: Any) {
+        delegate?.getSessao(with: self.selectedSections)
+        self.dismiss(animated: true)
+    }
+    
+    
+    /// Check or Uncheck the first cell
+    func checkUncheckFirstCell(){
+        if let firstCell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ModalSectionTableViewCell {
             firstCell.accessoryType = (firstCell.accessoryType == .checkmark) ? .none : .checkmark
         }
     }
     
-    func pullSessoes(){
+    /// Load sections
+    func pullSections(){
         FetchService.requestSessoes(handler: { (items) in
             if let items = items {
                 self.sessoes += items

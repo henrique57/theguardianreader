@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SessaoTableViewController: UITableViewController {
+class SectionTableViewController: UITableViewController {
 
     var sessoes = [Sessao]()
     
@@ -28,10 +28,9 @@ class SessaoTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sessoes.count
     }
-    
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destinationViewController = segue.destination as? NoticiaSessaoTableViewController,
+        if let destinationViewController = segue.destination as? NoticeSessaoTableViewController,
             let sender = sender as? Sessao {
                 destinationViewController.selectedData = sender.id
                 destinationViewController.titulo = sender.webTitle
@@ -43,7 +42,7 @@ class SessaoTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "sessaoCelula", for: indexPath) as! SessaoTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "sessaoCelula", for: indexPath) as! SectionTableViewCell
 
         cell.labelTitle.text = sessoes[indexPath.row].webTitle
         return cell
@@ -51,9 +50,7 @@ class SessaoTableViewController: UITableViewController {
     
     func pullRefreshSessoes(){
         FetchService.requestSessoes(handler: { (items) in
-            if let items = items {
-                self.sessoes += items
-            }
+            if let items = items { self.sessoes += items }
             self.tableView.reloadData()
         })
     }

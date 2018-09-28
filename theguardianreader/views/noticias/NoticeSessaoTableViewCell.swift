@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NoticiaSessaoTableViewCell: UITableViewCell {
+class NoticeSessaoTableViewCell: UITableViewCell {
     
     @IBOutlet weak var imageThumbnail: UIImageView!
     @IBOutlet weak var labelNoticia: UILabel!
@@ -21,8 +21,6 @@ class NoticiaSessaoTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

@@ -23,7 +23,6 @@ extension String {
         let anoFormatado = "\(dateTmp[2])/\(dateTmp[1])/\(dateTmp[0])"
         date[1].removeLast()
         return ("\(anoFormatado) \(date[1])")
-        
     }
     
     func formatAttribute() -> NSAttributedString? {

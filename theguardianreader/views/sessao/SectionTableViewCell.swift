@@ -1,16 +1,16 @@
 //
-//  ModalSessaoTableViewCell.swift
+//  SessaoTableViewCell.swift
 //  theguardianreader
 //
-//  Created by Henrique Pereira on 25/09/2018.
+//  Created by Henrique Pereira on 21/09/2018.
 //  Copyright © 2018 Henrique Pereira. All rights reserved.
 //
 
 import UIKit
 
-class ModalSessaoTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var labelSessao: UILabel!
+class SectionTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var labelTitle: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,8 +19,6 @@ class ModalSessaoTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

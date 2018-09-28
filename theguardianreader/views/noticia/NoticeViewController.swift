@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewsViewController: UIViewController {
+class NoticeViewController: UIViewController {
 
     var selectedData: String?
     
@@ -49,15 +49,33 @@ class NewsViewController: UIViewController {
         labelTitle.text = noticia.headline
         labelDate.text = noticia.firstPublicationDate?.formatData()
         labelSessao.text = noticia.sectionName
-        textViewNoticia.text = noticia.bodyText
+//        textViewNoticia.text = noticia.bodyText
         //noticia.body?.replacingOccurrences(of: "width: 1000", with: "width: 100")
         //noticia.body?.replacingOccurrences(of: "height: 1000", with: "height: 100")
         
-//        if let body =  noticia.body{
-//            if let data = body.formatAttribute(){
-//                textViewNoticia.attributedText = data
-//            }
-//        }
+        //<head><style> .gu-image {height: 40;width: 40;}</style></head>
+        
+        /*
+         if let range = snippet.range(of: "height:\"") {
+         let str = snippet[range.upperBound...]
+         print(str) // prints "123.456.7891"
+         }
+         */
+                
+        if let body =  noticia.body{
+            //let styleTag = "<head><style> .gu-image {width:\(screenWidth);height:\(screenWidth);} </style></head>"
+            //body.insert(contentsOf: styleTag, at: body.startIndex)
+            
+            // ---------------------------------
+            // TESTE DA FORMATAÇÃO
+            // ---------------------------------
+            Utils.resizeImageHtml(html: body)
+            
+            
+            if let data = body.formatAttribute(){
+                textViewNoticia.attributedText = data
+            }
+        }
     }
     
     func pullNoticia(){

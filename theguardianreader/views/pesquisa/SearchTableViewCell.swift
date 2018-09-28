@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PesquisaTableViewCell: UITableViewCell {
+class SearchTableViewCell: UITableViewCell {
 
     //    - Título da notícia.
     @IBOutlet weak var labelNoticia: UILabel!
@@ -27,8 +27,6 @@ class PesquisaTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

@@ -9,7 +9,7 @@
 import UIKit
 import ImageLoader
 
-class NoticiaSessaoTableViewController: UITableViewController {
+class NoticeSessaoTableViewController: UITableViewController {
 
     var numberPage : Int = 0
     var selectedData: String?
@@ -33,12 +33,11 @@ class NoticiaSessaoTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return links.count
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destinationViewController = segue.destination as? NoticiaViewController,
+        if let destinationViewController = segue.destination as? NoticeViewController,
             let sender = sender as? String {
             destinationViewController.selectedData = sender
         }
@@ -49,27 +48,23 @@ class NoticiaSessaoTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "noticiaCelula", for: indexPath) as! NoticiaSessaoTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "noticiaCelula", for: indexPath) as! NoticeSessaoTableViewCell
 
         // Configure the cell...
-       
         // https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif
         
         if let url = URL(string: links[indexPath.row].img  ?? "https://media.guim.co.uk/208c837d2ca2fdc5c5ffb5e7e3d6a6c4afed2d82/0_0_1300_780/500.jpg"){
             cell.imageThumbnail.load.request(with: url, onCompletion: { image, error, operation in
-                //print("image \(String(describing: image?.size)), render-image \(String(describing: cell.imageThumbnail.image?.size))")
                 if operation == .network {
                     let transition = CATransition()
-                    transition.duration = 0.5
+                    transition.duration = 0.2
                     transition.type = kCATransitionFade
                     cell.imageThumbnail.layer.add(transition, forKey: nil)
                     cell.imageThumbnail.image = image
                 }
             })
         }
-        
         cell.labelData.text = links[indexPath.row].webPublicationDate?.formatData()
-        
         cell.labelNoticia.text = links[indexPath.row].webTitle
         
         return cell
