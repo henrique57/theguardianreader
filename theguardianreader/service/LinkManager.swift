@@ -22,11 +22,11 @@ class LinkManager {
     static let pathType = "plist"
     
     // Keys na plist
-    static let uriSessoes = "uriSessoes"
-    static let uriSessao = "uriSessao"
-    static let uriPesquisa = "uriPesquisa"
-    static let uriPesquisaSessao = "uriPesquisaSessao"
-    static let uriNoticia = "uriNoticia"
+    static let uriSessoes = "uriSections"
+    static let uriSessao = "uriSection"
+    static let uriPesquisa = "uriSearch"
+    static let uriPesquisaSessao = "uriSearchSection"
+    static let uriNoticia = "uriNotice"
     
     static func getUriSections(recurso: String) -> String{
         let contentFile = contentOfFile(path: pathFile, type: pathType)

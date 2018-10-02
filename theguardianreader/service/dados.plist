@@ -2,15 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>uriSessao</key>
+	<key>uriSection</key>
 	<string>https://content.guardianapis.com/&lt;resource&gt;?api-key=cf6a8a21-ab8c-4ed5-94d0-80a7c892eb82&amp;order-by=newest&amp;page-size=&lt;pageQtt&gt;&amp;page=&lt;page&gt;&amp;show-fields=all</string>
-	<key>uriSessoes</key>
+	<key>uriSections</key>
 	<string>https://content.guardianapis.com/&lt;resource&gt;?api-key=cf6a8a21-ab8c-4ed5-94d0-80a7c892eb82</string>
-	<key>uriPesquisa</key>
+	<key>uriSearch</key>
 	<string>https://content.guardianapis.com/&lt;resource&gt;?api-key=cf6a8a21-ab8c-4ed5-94d0-80a7c892eb82&amp;show-elements=all&amp;show-fields=all&amp;order-by=newest&amp;q=&lt;query&gt;&amp;page-size=&lt;pageQtt&gt;&amp;page=&lt;page&gt;</string>
-	<key>uriPesquisaSessao</key>
+	<key>uriSearchSection</key>
 	<string>https://content.guardianapis.com/&lt;resource&gt;?api-key=cf6a8a21-ab8c-4ed5-94d0-80a7c892eb82&amp;show-elements=all&amp;show-fields=all&amp;order-by=newest&amp;q=&lt;query&gt;&amp;section=&lt;section&gt;&amp;page-size=&lt;pageQtt&gt;&amp;page=&lt;page&gt;</string>
-	<key>uriNoticia</key>
+	<key>uriNotice</key>
 	<string>https://content.guardianapis.com/&lt;resource&gt;?api-key=cf6a8a21-ab8c-4ed5-94d0-80a7c892eb82&amp;show-elements=all&amp;show-fields=all</string>
 </dict>
 </plist>

@@ -17,6 +17,8 @@ class NoticeSectionTableViewController: UITableViewController {
     var noticeSection = [NoticeSection]()
  
     override func viewWillAppear(_ animated: Bool) {
+        self.title = titulo
+        self.pullRefreshSessao()
     }
 
     override func didReceiveMemoryWarning() {
