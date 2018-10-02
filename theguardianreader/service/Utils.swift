@@ -10,14 +10,32 @@ import UIKit
 
 class Utils {
     
+    static func formatToBrazilianData(data: String?) -> String{
+        var formattedData = "";
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "dd/MM/yyyy HH:mm:ss"
+        if let dateToFormat = data, let date = dateFormatterGet.date(from: dateToFormat) {
+            formattedData = dateFormatterPrint.string(from: date)
+        } else {
+            print("There was an error decoding the string")
+        }
+        return formattedData
+    }
+    
     static func resizeImageHtml(html: String) -> String {
         // ---------------------------------
-        // CHANGE WIDTH AND HEIGHT
+        // GET SCREEN SIZE
         // ---------------------------------
-        
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width
         
+        var strToChange = ""
+        
+        // ---------------------------------
+        // GET THE IMAGE WIDTH
+        // ---------------------------------
         var nroWidth: Int?
         if let widthStart = html.range(of: "width=\"") {
             if let widthEnd = html[widthStart.upperBound...].range(of: "\""){
@@ -27,6 +45,10 @@ class Utils {
                 nroWidth = Int(newStr)
             }
         }
+        
+        // ---------------------------------
+        // GET THE IMAGE HEIGHT
+        // ---------------------------------
         var nroHeight: Int?
         if let widthStart = html.range(of: "height=\"") {
             if let widthEnd = html[widthStart.upperBound...].range(of: "\""){
@@ -38,23 +60,33 @@ class Utils {
         }
         //print("\(nroWidth) - \(nroHeight)")
         
+        // ---------------------------------
+        // CALCULATE IMAGE SIZE PROPORCIONALLY
+        // ---------------------------------
         var tamanho = [Int]()
         
-        
         if let nroWidth = nroWidth {
-            if(nroWidth > (Int)screenWidth){
-                let proporcao =  nroWidth / (Int)screenWidth
+            if(nroWidth > Int(screenWidth)){
+                let proporcao =  nroWidth / Int(screenWidth)
                 tamanho.append(Int(nroWidth/proporcao))
                 if let nroHeight = nroHeight{
+                    strToChange.append(contentsOf: "width=\"\(nroWidth)\" height=\"\(nroHeight)\"")
                     tamanho.append(Int(nroHeight/proporcao))
                 }
             }
         }
+        //print(tamanho)
+        //width="1000" height="1000"
+        //var strToChange = "width=\"\(tamanho[0])\" height=\"\(tamanho[1])\""
+        let strForChange = "width=\"\(tamanho[0])\" height=\"\(tamanho[1])\""
         
+        //html = html.replacingOccurrences(of: strToChange, with: strForChange)
         
-        print(tamanho)
+        print("width=\"\(screenWidth)\"")
+        print(strToChange)
+        print(strForChange)
         
-        return ""
+        return html.replacingOccurrences(of: strToChange, with: strForChange)
     }
     
 }

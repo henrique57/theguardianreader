@@ -8,37 +8,35 @@
 
 /* Begin PBXBuildFile section */
 		DBF53C80B12A3A97FF5FCF67 /* Pods_theguardianreader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72E98AE5DBF8DBE844404F1B /* Pods_theguardianreader.framework */; };
+		E66A50172162ACD000607F37 /* ResponseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66A50162162ACD000607F37 /* ResponseService.swift */; };
 		E6B23E0521513AFD006B638F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B23E0421513AFD006B638F /* AppDelegate.swift */; };
 		E6B23E0C21513AFD006B638F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6B23E0A21513AFD006B638F /* Main.storyboard */; };
 		E6B23E0E21513B04006B638F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6B23E0D21513B04006B638F /* Assets.xcassets */; };
 		E6B23E1121513B04006B638F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6B23E0F21513B04006B638F /* LaunchScreen.storyboard */; };
 		E6B23E1F215172D2006B638F /* SectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B23E1E215172D2006B638F /* SectionTableViewController.swift */; };
-		E6B23E2321517A22006B638F /* Sessao.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B23E2221517A22006B638F /* Sessao.swift */; };
-		E6C38BAB21555EED006CFC60 /* NoticeSessaoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C38BAA21555EED006CFC60 /* NoticeSessaoTableViewCell.swift */; };
+		E6B23E2321517A22006B638F /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B23E2221517A22006B638F /* Section.swift */; };
+		E6C38BAB21555EED006CFC60 /* NoticeSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C38BAA21555EED006CFC60 /* NoticeSectionTableViewCell.swift */; };
 		E6C38BAD215564C4006CFC60 /* SectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C38BAC215564C4006CFC60 /* SectionTableViewCell.swift */; };
 		E6C38BB1215576E7006CFC60 /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C38BB0215576E7006CFC60 /* NoticeViewController.swift */; };
-		E6C38BB321557758006CFC60 /* Noticia.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C38BB221557758006CFC60 /* Noticia.swift */; };
-		E6C38BB5215578F0006CFC60 /* NoticiaResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C38BB4215578F0006CFC60 /* NoticiaResponse.swift */; };
+		E6C38BB321557758006CFC60 /* Notice.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C38BB221557758006CFC60 /* Notice.swift */; };
 		E6C38BB8215900CF006CFC60 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C38BB7215900CF006CFC60 /* SearchTableViewController.swift */; };
 		E6C38BBA215900EA006CFC60 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C38BB9215900EA006CFC60 /* SearchTableViewCell.swift */; };
-		E6C38BBC21590FE0006CFC60 /* PesquisaResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C38BBB21590FE0006CFC60 /* PesquisaResponse.swift */; };
-		E6C38BBE21591052006CFC60 /* Pesquisa.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C38BBD21591052006CFC60 /* Pesquisa.swift */; };
+		E6C38BBE21591052006CFC60 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C38BBD21591052006CFC60 /* Search.swift */; };
 		E6C38BCA215AA0D2006CFC60 /* ModalSectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C38BC9215AA0D2006CFC60 /* ModalSectionTableViewController.swift */; };
 		E6C38BCC215AA0FD006CFC60 /* ModalSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C38BCB215AA0FD006CFC60 /* ModalSectionTableViewCell.swift */; };
 		E6C38BD1215CF0EC006CFC60 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C38BD0215CF0EC006CFC60 /* String.swift */; };
 		E6C38BD3215EB6CD006CFC60 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C38BD2215EB6CC006CFC60 /* Utils.swift */; };
-		E6DE69B92152A5C700ADD969 /* NoticeSessaoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DE69B82152A5C700ADD969 /* NoticeSessaoTableViewController.swift */; };
-		E6DE69BD2152B0EC00ADD969 /* NoticiaSessao.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DE69BC2152B0EC00ADD969 /* NoticiaSessao.swift */; };
+		E6DE69B92152A5C700ADD969 /* NoticeSectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DE69B82152A5C700ADD969 /* NoticeSectionTableViewController.swift */; };
+		E6DE69BD2152B0EC00ADD969 /* NoticeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DE69BC2152B0EC00ADD969 /* NoticeSection.swift */; };
 		E6DE69C02152DE5A00ADD969 /* FetchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DE69BF2152DE5A00ADD969 /* FetchService.swift */; };
-		E6DE69C42153D91000ADD969 /* SessaoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DE69C32153D90F00ADD969 /* SessaoResponse.swift */; };
 		E6DE69C821541B1800ADD969 /* LinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DE69C721541B1800ADD969 /* LinkManager.swift */; };
 		E6DE69CA215421ED00ADD969 /* dados.plist in Resources */ = {isa = PBXBuildFile; fileRef = E6DE69C9215421ED00ADD969 /* dados.plist */; };
-		E6DE69CC21542A7300ADD969 /* NoticiaSessaoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DE69CB21542A7300ADD969 /* NoticiaSessaoResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		472CE46D354F42E083C7EF17 /* Pods-theguardianreader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-theguardianreader.release.xcconfig"; path = "Pods/Target Support Files/Pods-theguardianreader/Pods-theguardianreader.release.xcconfig"; sourceTree = "<group>"; };
 		72E98AE5DBF8DBE844404F1B /* Pods_theguardianreader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_theguardianreader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E66A50162162ACD000607F37 /* ResponseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseService.swift; sourceTree = "<group>"; };
 		E6B23E0121513AFD006B638F /* theguardianreader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = theguardianreader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6B23E0421513AFD006B638F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E6B23E0B21513AFD006B638F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -46,27 +44,23 @@
 		E6B23E1021513B04006B638F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E6B23E1221513B04006B638F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6B23E1E215172D2006B638F /* SectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTableViewController.swift; sourceTree = "<group>"; };
-		E6B23E2221517A22006B638F /* Sessao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sessao.swift; sourceTree = "<group>"; };
-		E6C38BAA21555EED006CFC60 /* NoticeSessaoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeSessaoTableViewCell.swift; sourceTree = "<group>"; };
+		E6B23E2221517A22006B638F /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		E6C38BAA21555EED006CFC60 /* NoticeSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeSectionTableViewCell.swift; sourceTree = "<group>"; };
 		E6C38BAC215564C4006CFC60 /* SectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTableViewCell.swift; sourceTree = "<group>"; };
 		E6C38BB0215576E7006CFC60 /* NoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
-		E6C38BB221557758006CFC60 /* Noticia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Noticia.swift; sourceTree = "<group>"; };
-		E6C38BB4215578F0006CFC60 /* NoticiaResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticiaResponse.swift; sourceTree = "<group>"; };
+		E6C38BB221557758006CFC60 /* Notice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notice.swift; sourceTree = "<group>"; };
 		E6C38BB7215900CF006CFC60 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		E6C38BB9215900EA006CFC60 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
-		E6C38BBB21590FE0006CFC60 /* PesquisaResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PesquisaResponse.swift; sourceTree = "<group>"; };
-		E6C38BBD21591052006CFC60 /* Pesquisa.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pesquisa.swift; sourceTree = "<group>"; };
+		E6C38BBD21591052006CFC60 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		E6C38BC9215AA0D2006CFC60 /* ModalSectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalSectionTableViewController.swift; sourceTree = "<group>"; };
 		E6C38BCB215AA0FD006CFC60 /* ModalSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalSectionTableViewCell.swift; sourceTree = "<group>"; };
 		E6C38BD0215CF0EC006CFC60 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		E6C38BD2215EB6CC006CFC60 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		E6DE69B82152A5C700ADD969 /* NoticeSessaoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeSessaoTableViewController.swift; sourceTree = "<group>"; };
-		E6DE69BC2152B0EC00ADD969 /* NoticiaSessao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticiaSessao.swift; sourceTree = "<group>"; };
+		E6DE69B82152A5C700ADD969 /* NoticeSectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeSectionTableViewController.swift; sourceTree = "<group>"; };
+		E6DE69BC2152B0EC00ADD969 /* NoticeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeSection.swift; sourceTree = "<group>"; };
 		E6DE69BF2152DE5A00ADD969 /* FetchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchService.swift; sourceTree = "<group>"; };
-		E6DE69C32153D90F00ADD969 /* SessaoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessaoResponse.swift; sourceTree = "<group>"; };
 		E6DE69C721541B1800ADD969 /* LinkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkManager.swift; sourceTree = "<group>"; };
 		E6DE69C9215421ED00ADD969 /* dados.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = dados.plist; sourceTree = "<group>"; };
-		E6DE69CB21542A7300ADD969 /* NoticiaSessaoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticiaSessaoResponse.swift; sourceTree = "<group>"; };
 		FA85BAA28AAF420C40D14448 /* Pods-theguardianreader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-theguardianreader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-theguardianreader/Pods-theguardianreader.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,21 +88,21 @@
 			isa = PBXGroup;
 			children = (
 				E6C38BC12159383D006CFC60 /* modal */,
-				E6C38BB621590098006CFC60 /* pesquisa */,
-				E6DE69C6215417D900ADD969 /* noticia */,
-				E6DE69B72152A42A00ADD969 /* noticias */,
-				E65B91182152841D003F5BBE /* sessao */,
+				E6C38BB621590098006CFC60 /* search */,
+				E6DE69C6215417D900ADD969 /* notice */,
+				E6DE69B72152A42A00ADD969 /* noticeSection */,
+				E65B91182152841D003F5BBE /* section */,
 			);
 			path = views;
 			sourceTree = "<group>";
 		};
-		E65B91182152841D003F5BBE /* sessao */ = {
+		E65B91182152841D003F5BBE /* section */ = {
 			isa = PBXGroup;
 			children = (
 				E6B23E1E215172D2006B638F /* SectionTableViewController.swift */,
 				E6C38BAC215564C4006CFC60 /* SectionTableViewCell.swift */,
 			);
-			path = sessao;
+			path = section;
 			sourceTree = "<group>";
 		};
 		E6B23DF821513AFD006B638F = {
@@ -148,22 +142,21 @@
 		E6B23E24215185E3006B638F /* model */ = {
 			isa = PBXGroup;
 			children = (
-				E6DE69C52153EBFA00ADD969 /* responses */,
-				E6B23E2221517A22006B638F /* Sessao.swift */,
-				E6DE69BC2152B0EC00ADD969 /* NoticiaSessao.swift */,
-				E6C38BB221557758006CFC60 /* Noticia.swift */,
-				E6C38BBD21591052006CFC60 /* Pesquisa.swift */,
+				E6B23E2221517A22006B638F /* Section.swift */,
+				E6DE69BC2152B0EC00ADD969 /* NoticeSection.swift */,
+				E6C38BB221557758006CFC60 /* Notice.swift */,
+				E6C38BBD21591052006CFC60 /* Search.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
 		};
-		E6C38BB621590098006CFC60 /* pesquisa */ = {
+		E6C38BB621590098006CFC60 /* search */ = {
 			isa = PBXGroup;
 			children = (
 				E6C38BB7215900CF006CFC60 /* SearchTableViewController.swift */,
 				E6C38BB9215900EA006CFC60 /* SearchTableViewCell.swift */,
 			);
-			path = pesquisa;
+			path = search;
 			sourceTree = "<group>";
 		};
 		E6C38BC12159383D006CFC60 /* modal */ = {
@@ -183,13 +176,13 @@
 			path = extension;
 			sourceTree = "<group>";
 		};
-		E6DE69B72152A42A00ADD969 /* noticias */ = {
+		E6DE69B72152A42A00ADD969 /* noticeSection */ = {
 			isa = PBXGroup;
 			children = (
-				E6DE69B82152A5C700ADD969 /* NoticeSessaoTableViewController.swift */,
-				E6C38BAA21555EED006CFC60 /* NoticeSessaoTableViewCell.swift */,
+				E6DE69B82152A5C700ADD969 /* NoticeSectionTableViewController.swift */,
+				E6C38BAA21555EED006CFC60 /* NoticeSectionTableViewCell.swift */,
 			);
-			path = noticias;
+			path = noticeSection;
 			sourceTree = "<group>";
 		};
 		E6DE69BE2152DDC000ADD969 /* service */ = {
@@ -197,29 +190,19 @@
 			children = (
 				E6DE69C9215421ED00ADD969 /* dados.plist */,
 				E6DE69BF2152DE5A00ADD969 /* FetchService.swift */,
+				E66A50162162ACD000607F37 /* ResponseService.swift */,
 				E6DE69C721541B1800ADD969 /* LinkManager.swift */,
 				E6C38BD2215EB6CC006CFC60 /* Utils.swift */,
 			);
 			path = service;
 			sourceTree = "<group>";
 		};
-		E6DE69C52153EBFA00ADD969 /* responses */ = {
-			isa = PBXGroup;
-			children = (
-				E6DE69C32153D90F00ADD969 /* SessaoResponse.swift */,
-				E6DE69CB21542A7300ADD969 /* NoticiaSessaoResponse.swift */,
-				E6C38BB4215578F0006CFC60 /* NoticiaResponse.swift */,
-				E6C38BBB21590FE0006CFC60 /* PesquisaResponse.swift */,
-			);
-			path = responses;
-			sourceTree = "<group>";
-		};
-		E6DE69C6215417D900ADD969 /* noticia */ = {
+		E6DE69C6215417D900ADD969 /* notice */ = {
 			isa = PBXGroup;
 			children = (
 				E6C38BB0215576E7006CFC60 /* NoticeViewController.swift */,
 			);
-			path = noticia;
+			path = notice;
 			sourceTree = "<group>";
 		};
 		FC5A374451B631F6EDED8C1C /* Pods */ = {
@@ -309,16 +292,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-theguardianreader/Pods-theguardianreader-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/ImageLoader/ImageLoader.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImageLoader.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -350,27 +331,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6DE69CC21542A7300ADD969 /* NoticiaSessaoResponse.swift in Sources */,
-				E6C38BB321557758006CFC60 /* Noticia.swift in Sources */,
+				E6C38BB321557758006CFC60 /* Notice.swift in Sources */,
 				E6C38BAD215564C4006CFC60 /* SectionTableViewCell.swift in Sources */,
-				E6C38BBC21590FE0006CFC60 /* PesquisaResponse.swift in Sources */,
 				E6DE69C02152DE5A00ADD969 /* FetchService.swift in Sources */,
 				E6C38BBA215900EA006CFC60 /* SearchTableViewCell.swift in Sources */,
 				E6B23E0521513AFD006B638F /* AppDelegate.swift in Sources */,
 				E6C38BD3215EB6CD006CFC60 /* Utils.swift in Sources */,
 				E6C38BB1215576E7006CFC60 /* NoticeViewController.swift in Sources */,
 				E6C38BCA215AA0D2006CFC60 /* ModalSectionTableViewController.swift in Sources */,
-				E6C38BBE21591052006CFC60 /* Pesquisa.swift in Sources */,
-				E6DE69C42153D91000ADD969 /* SessaoResponse.swift in Sources */,
+				E6C38BBE21591052006CFC60 /* Search.swift in Sources */,
 				E6C38BD1215CF0EC006CFC60 /* String.swift in Sources */,
-				E6B23E2321517A22006B638F /* Sessao.swift in Sources */,
-				E6C38BB5215578F0006CFC60 /* NoticiaResponse.swift in Sources */,
+				E6B23E2321517A22006B638F /* Section.swift in Sources */,
 				E6C38BCC215AA0FD006CFC60 /* ModalSectionTableViewCell.swift in Sources */,
-				E6C38BAB21555EED006CFC60 /* NoticeSessaoTableViewCell.swift in Sources */,
-				E6DE69B92152A5C700ADD969 /* NoticeSessaoTableViewController.swift in Sources */,
+				E6C38BAB21555EED006CFC60 /* NoticeSectionTableViewCell.swift in Sources */,
+				E6DE69B92152A5C700ADD969 /* NoticeSectionTableViewController.swift in Sources */,
 				E6B23E1F215172D2006B638F /* SectionTableViewController.swift in Sources */,
 				E6C38BB8215900CF006CFC60 /* SearchTableViewController.swift in Sources */,
-				E6DE69BD2152B0EC00ADD969 /* NoticiaSessao.swift in Sources */,
+				E66A50172162ACD000607F37 /* ResponseService.swift in Sources */,
+				E6DE69BD2152B0EC00ADD969 /* NoticeSection.swift in Sources */,
 				E6DE69C821541B1800ADD969 /* LinkManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -6,11 +6,13 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Section Table View Controller-->
+        <!--The Guardian Reader-->
         <scene sceneID="ccr-o4-zDN">
             <objects>
                 <tableViewController id="mMo-we-SIy" customClass="SectionTableViewController" customModule="theguardianreader" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,7 +21,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="sessaoCelula" textLabel="GGd-8w-QVe" rowHeight="82" style="IBUITableViewCellStyleDefault" id="5Sf-Re-acK" customClass="SectionTableViewCell" customModule="theguardianreader" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="sectionCell" textLabel="GGd-8w-QVe" rowHeight="82" style="IBUITableViewCellStyleDefault" id="5Sf-Re-acK" customClass="SectionTableViewCell" customModule="theguardianreader" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="82"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5Sf-Re-acK" id="NOS-ig-i3Z">
@@ -45,25 +47,27 @@
                             <outlet property="delegate" destination="mMo-we-SIy" id="55u-kQ-RWP"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="2s7-js-mo0"/>
+                    <navigationItem key="navigationItem" title="The Guardian Reader" id="2s7-js-mo0">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="9c6-Ng-vZN"/>
+                    </navigationItem>
                     <connections>
-                        <segue destination="Ydj-iW-eXD" kind="show" identifier="listaNoticiasSessao" id="0RC-4Q-vHd"/>
+                        <segue destination="Ydj-iW-eXD" kind="show" identifier="noticeSectionSegue" id="0RC-4Q-vHd"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O9q-XR-lgD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1785" y="-370"/>
         </scene>
-        <!--Notice Sessao Table View Controller-->
+        <!--Notice Section Table View Controller-->
         <scene sceneID="erB-PR-FE9">
             <objects>
-                <tableViewController id="Ydj-iW-eXD" customClass="NoticeSessaoTableViewController" customModule="theguardianreader" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Ydj-iW-eXD" customClass="NoticeSectionTableViewController" customModule="theguardianreader" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="110" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="3kR-ry-EWy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="noticiaCelula" rowHeight="120" id="ffC-Jg-vfJ" customClass="NoticeSessaoTableViewCell" customModule="theguardianreader" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="noticeCell" rowHeight="120" id="ffC-Jg-vfJ" customClass="NoticeSectionTableViewCell" customModule="theguardianreader" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ffC-Jg-vfJ" id="iFb-oF-xhv">
@@ -118,7 +122,7 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <segue destination="OCa-O6-Tz9" kind="show" identifier="listaNoticia" id="9vu-74-772"/>
+                        <segue destination="OCa-O6-Tz9" kind="show" identifier="noticeSegue" id="9vu-74-772"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WQC-r4-VLZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -129,7 +133,7 @@
         <scene sceneID="iKe-xa-dY7">
             <objects>
                 <viewController id="OCa-O6-Tz9" customClass="NoticeViewController" customModule="theguardianreader" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Np6-uq-Me2">
+                    <view key="view" contentMode="scaleAspectFit" id="Np6-uq-Me2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -139,14 +143,14 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H4i-dn-7PC">
                                         <rect key="frame" x="10" y="245" width="355" height="65"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="65" id="I49-fT-XuK"/>
+                                            <constraint firstAttribute="height" constant="65" id="jBd-pE-DRt"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gia-yc-cpb">
-                                        <rect key="frame" x="330" y="325.5" width="35" height="20"/>
+                                        <rect key="frame" x="330" y="325" width="35" height="20"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -154,28 +158,27 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uSs-Ec-KNZ">
                                         <rect key="frame" x="5" y="5" width="365" height="225"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="365" id="2Dq-51-eR3"/>
-                                            <constraint firstAttribute="height" constant="225" id="e1B-rO-u8o"/>
+                                            <constraint firstAttribute="height" constant="225" id="g46-p7-iZf"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zlM-ev-euo">
                                         <rect key="frame" x="10" y="325" width="35" height="20"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="exe-AS-kkY"/>
+                                            <constraint firstAttribute="height" constant="20" id="kUj-Yx-GuS"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" scrollEnabled="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jPU-Gk-IiF">
-                                        <rect key="frame" x="10" y="365.5" width="355" height="200"/>
+                                        <rect key="frame" x="10" y="365" width="355" height="200"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <attributedString key="attributedText">
                                             <fragment>
-                                                <mutableString key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                                <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                 <attributes>
                                                     <font key="NSFont" metaFont="system" size="14"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
                                         </attributedString>
@@ -183,32 +186,33 @@
                                     </textView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="uSs-Ec-KNZ" firstAttribute="top" secondItem="EgT-85-h2e" secondAttribute="top" constant="5" id="1WK-ja-xez"/>
-                                    <constraint firstItem="Gia-yc-cpb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="EgT-85-h2e" secondAttribute="leading" constant="20" symbolic="YES" id="68P-ud-8wL"/>
-                                    <constraint firstItem="H4i-dn-7PC" firstAttribute="leading" secondItem="EgT-85-h2e" secondAttribute="leading" constant="10" id="7Gn-vd-AmZ"/>
-                                    <constraint firstItem="H4i-dn-7PC" firstAttribute="top" secondItem="uSs-Ec-KNZ" secondAttribute="bottom" constant="15" id="9Pk-RQ-8cT"/>
-                                    <constraint firstAttribute="width" constant="375" id="Fxg-Ce-NTL"/>
-                                    <constraint firstAttribute="height" constant="600" id="Ghm-gS-Ji7"/>
-                                    <constraint firstItem="jPU-Gk-IiF" firstAttribute="top" secondItem="Gia-yc-cpb" secondAttribute="bottom" constant="20" id="JIL-sl-MkC"/>
-                                    <constraint firstAttribute="bottom" secondItem="jPU-Gk-IiF" secondAttribute="bottom" id="Mkr-nM-VUz"/>
-                                    <constraint firstItem="uSs-Ec-KNZ" firstAttribute="leading" secondItem="EgT-85-h2e" secondAttribute="leading" constant="5" id="PD6-bB-fZg"/>
-                                    <constraint firstItem="zlM-ev-euo" firstAttribute="top" secondItem="H4i-dn-7PC" secondAttribute="bottom" constant="15" id="YSt-98-Njg"/>
-                                    <constraint firstAttribute="trailing" secondItem="Gia-yc-cpb" secondAttribute="trailing" constant="10" id="Zno-gA-ITd"/>
-                                    <constraint firstItem="jPU-Gk-IiF" firstAttribute="leading" secondItem="EgT-85-h2e" secondAttribute="leading" constant="10" id="e2w-BG-Brd"/>
-                                    <constraint firstAttribute="trailing" secondItem="uSs-Ec-KNZ" secondAttribute="trailing" constant="5" id="g6O-YI-1fW"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="zlM-ev-euo" secondAttribute="trailing" constant="20" symbolic="YES" id="ifP-jH-cjd"/>
-                                    <constraint firstItem="Gia-yc-cpb" firstAttribute="height" secondItem="zlM-ev-euo" secondAttribute="height" id="ofh-V8-SXR"/>
-                                    <constraint firstAttribute="trailing" secondItem="jPU-Gk-IiF" secondAttribute="trailing" constant="10" id="pEs-Dq-obP"/>
-                                    <constraint firstAttribute="trailing" secondItem="H4i-dn-7PC" secondAttribute="trailing" constant="10" id="s01-Sm-p83"/>
-                                    <constraint firstItem="zlM-ev-euo" firstAttribute="leading" secondItem="EgT-85-h2e" secondAttribute="leading" constant="10" id="wQp-da-ezU"/>
-                                    <constraint firstItem="Gia-yc-cpb" firstAttribute="centerY" secondItem="zlM-ev-euo" secondAttribute="centerY" id="xsH-gH-ucZ"/>
+                                    <constraint firstItem="zlM-ev-euo" firstAttribute="leading" secondItem="jPU-Gk-IiF" secondAttribute="leading" id="46S-TC-max"/>
+                                    <constraint firstItem="Gia-yc-cpb" firstAttribute="trailing" secondItem="jPU-Gk-IiF" secondAttribute="trailing" id="5aq-dr-bVt"/>
+                                    <constraint firstItem="H4i-dn-7PC" firstAttribute="trailing" secondItem="Gia-yc-cpb" secondAttribute="trailing" id="7kv-cx-ffX"/>
+                                    <constraint firstItem="zlM-ev-euo" firstAttribute="top" secondItem="H4i-dn-7PC" secondAttribute="bottom" constant="15" id="D7O-pq-Dwn"/>
+                                    <constraint firstItem="zlM-ev-euo" firstAttribute="baseline" secondItem="Gia-yc-cpb" secondAttribute="baseline" id="KrO-iO-MzW"/>
+                                    <constraint firstItem="H4i-dn-7PC" firstAttribute="top" secondItem="uSs-Ec-KNZ" secondAttribute="bottom" constant="15" id="LPk-D0-cAp"/>
+                                    <constraint firstItem="uSs-Ec-KNZ" firstAttribute="top" secondItem="EgT-85-h2e" secondAttribute="top" constant="5" id="LhC-3f-1nE"/>
+                                    <constraint firstItem="Gia-yc-cpb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="EgT-85-h2e" secondAttribute="leading" constant="20" symbolic="YES" id="Ry2-lb-Qs8"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="zlM-ev-euo" secondAttribute="trailing" constant="20" symbolic="YES" id="VwH-mW-buq"/>
+                                    <constraint firstItem="jPU-Gk-IiF" firstAttribute="top" secondItem="zlM-ev-euo" secondAttribute="bottom" constant="20" id="fnr-NF-nel"/>
+                                    <constraint firstItem="H4i-dn-7PC" firstAttribute="leading" secondItem="EgT-85-h2e" secondAttribute="leading" constant="10" id="g25-db-kB4"/>
+                                    <constraint firstItem="uSs-Ec-KNZ" firstAttribute="centerX" secondItem="EgT-85-h2e" secondAttribute="centerX" id="inj-yp-LdN"/>
+                                    <constraint firstAttribute="bottom" secondItem="jPU-Gk-IiF" secondAttribute="bottom" constant="35" id="lwj-Zx-5Fr"/>
+                                    <constraint firstAttribute="trailing" secondItem="H4i-dn-7PC" secondAttribute="trailing" constant="10" id="oA4-dL-Dem"/>
+                                    <constraint firstItem="uSs-Ec-KNZ" firstAttribute="leading" secondItem="EgT-85-h2e" secondAttribute="leading" constant="5" id="rNf-Kz-jYA"/>
+                                    <constraint firstItem="H4i-dn-7PC" firstAttribute="leading" secondItem="zlM-ev-euo" secondAttribute="leading" id="swN-um-Nci"/>
+                                    <constraint firstAttribute="trailing" secondItem="uSs-Ec-KNZ" secondAttribute="trailing" constant="5" id="syQ-lV-ycu"/>
+                                    <constraint firstItem="zlM-ev-euo" firstAttribute="firstBaseline" secondItem="Gia-yc-cpb" secondAttribute="firstBaseline" id="u8i-BE-ll4"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="EgT-85-h2e" firstAttribute="top" secondItem="uVF-Yx-wHB" secondAttribute="top" id="0tI-VH-tWe"/>
-                            <constraint firstItem="EgT-85-h2e" firstAttribute="leading" secondItem="Np6-uq-Me2" secondAttribute="leading" id="OJt-Id-guA"/>
+                            <constraint firstItem="EgT-85-h2e" firstAttribute="leading" secondItem="Np6-uq-Me2" secondAttribute="leading" id="0Dz-Uq-irn"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="EgT-85-h2e" secondAttribute="bottom" constant="-46" id="Kme-em-shx"/>
+                            <constraint firstItem="EgT-85-h2e" firstAttribute="top" secondItem="uVF-Yx-wHB" secondAttribute="top" id="Sn4-o8-yVU"/>
+                            <constraint firstAttribute="trailing" secondItem="EgT-85-h2e" secondAttribute="trailing" id="b0p-09-KLN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uVF-Yx-wHB"/>
                     </view>
@@ -242,7 +246,7 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
-        <!--Search Table View Controller-->
+        <!--The Guardian Reader-->
         <scene sceneID="JUz-up-lQQ">
             <objects>
                 <tableViewController id="qyh-F4-UVx" customClass="SearchTableViewController" customModule="theguardianreader" customModuleProvider="target" sceneMemberID="viewController">
@@ -263,7 +267,7 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="pesquisaCelula" rowHeight="150" id="PZa-1n-CsT" customClass="SearchTableViewCell" customModule="theguardianreader" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchCell" rowHeight="150" id="PZa-1n-CsT" customClass="SearchTableViewCell" customModule="theguardianreader" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="84" width="375" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PZa-1n-CsT" id="GGB-wl-MLY">
@@ -290,11 +294,13 @@
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="0Gi-BK-0bf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GGB-wl-MLY" secondAttribute="leading" constant="20" symbolic="YES" id="7ry-pk-H8Z"/>
                                         <constraint firstItem="WbX-0j-su9" firstAttribute="leading" secondItem="GGB-wl-MLY" secondAttribute="leading" constant="15" id="82x-UK-BFd"/>
                                         <constraint firstAttribute="trailing" secondItem="E9K-Ht-cRP" secondAttribute="trailing" constant="15" id="AsY-vW-p7u"/>
                                         <constraint firstItem="E9K-Ht-cRP" firstAttribute="top" secondItem="GGB-wl-MLY" secondAttribute="top" constant="5" id="MTZ-U9-TjJ"/>
                                         <constraint firstItem="0Gi-BK-0bf" firstAttribute="top" secondItem="E9K-Ht-cRP" secondAttribute="bottom" constant="10" id="WED-2h-NLc"/>
                                         <constraint firstItem="E9K-Ht-cRP" firstAttribute="leading" secondItem="GGB-wl-MLY" secondAttribute="leading" constant="15" id="WVv-Ew-A1c"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WbX-0j-su9" secondAttribute="trailing" constant="20" symbolic="YES" id="X9X-dB-paU"/>
                                         <constraint firstAttribute="bottom" secondItem="0Gi-BK-0bf" secondAttribute="bottom" constant="5" id="fMT-w6-WhD"/>
                                         <constraint firstAttribute="bottom" secondItem="WbX-0j-su9" secondAttribute="bottom" constant="5" id="h89-e0-aDJ"/>
                                         <constraint firstItem="WbX-0j-su9" firstAttribute="top" secondItem="E9K-Ht-cRP" secondAttribute="bottom" constant="10" id="uad-rf-f10"/>
@@ -313,7 +319,8 @@
                             <outlet property="delegate" destination="qyh-F4-UVx" id="2Kk-u3-Eto"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="fa9-Ff-V08">
+                    <navigationItem key="navigationItem" title="The Guardian Reader" id="fa9-Ff-V08">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="GlI-Ps-73I"/>
                         <barButtonItem key="rightBarButtonItem" title="Filter" style="plain" id="MIz-D6-WuV">
                             <button key="customView" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" id="MSu-1b-hI5">
                                 <rect key="frame" x="276" y="7" width="83" height="30"/>
@@ -329,8 +336,8 @@
                         <outlet property="buttonFilter" destination="MSu-1b-hI5" id="POn-d8-Ocv"/>
                         <outlet property="searchBarNoticia" destination="e3X-Su-nao" id="c81-fI-ZeX"/>
                         <outlet property="searchDisplayController" destination="gNz-89-pJs" id="4DK-nm-A5P"/>
-                        <segue destination="OCa-O6-Tz9" kind="show" identifier="listaNoticiaPesquisada" id="nug-lh-eT0"/>
-                        <segue destination="NGP-QB-GLe" kind="presentation" identifier="selecionaSessaoTv" id="Pbv-yp-7i8"/>
+                        <segue destination="OCa-O6-Tz9" kind="show" identifier="noticeSegue" id="nug-lh-eT0"/>
+                        <segue destination="NGP-QB-GLe" kind="presentation" identifier="selectSessionSegue" id="Pbv-yp-7i8"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2cl-qK-XzU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -361,7 +368,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bX3-7h-jrj">
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bX3-7h-jrj">
                                             <rect key="frame" x="16" y="12" width="343" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -456,6 +463,6 @@
         <image name="searchicon" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9vu-74-772"/>
+        <segue reference="nug-lh-eT0"/>
     </inferredMetricsTieBreakers>
 </document>

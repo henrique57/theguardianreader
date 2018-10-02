@@ -7,89 +7,63 @@
 //
 
 import Alamofire
-import AlamofireObjectMapper
+import SwiftyJSON
+import ImageLoader
 
-typealias JsonSessaoHandler = (([Sessao]?) -> ())
-typealias JsonNoticiaSessaoHandler = (([NoticiaSessao]?) -> ())
-typealias JsonNoticiaHandler = ((Noticia?) -> ())
-typealias JsonPesquisaHandler = (([Pesquisa]?) -> ())
+typealias JsonSessaoHandler = (([Section]?) -> ())
+typealias JsonNoticiaSessaoHandler = (([NoticeSection]?) -> ())
+typealias JsonNoticiaHandler = ((Notice?) -> ())
+typealias JsonPesquisaHandler = (([Search]?) -> ())
+typealias JsonHandler = ((JSON) -> ())
 
 
 class FetchService {
     
-    static func requestSessoes(handler: JsonSessaoHandler?){
-        let resource = "sections";
-        
-        Alamofire.request(LinkManager.getUriSessoes(recurso: resource)).responseObject {
-            (response: DataResponse<SessaoResponse>) in
-            
+    static func getRequest(url: String, handler: JsonHandler?){
+        Alamofire.request(url).validate().responseJSON {
+            (response) in
             switch(response.result){
-                
-            case .success(let value) :
-                if let sessoes = value.sessoes {
+                case .success(let value) :
                     if let handlerUnwrapped = handler {
-                        handlerUnwrapped(sessoes)
+                        //print("Response: \(value)")
+                        handlerUnwrapped(JSON(value))
                     }
-                }
-            case .failure(let error):
-                print(error)
+                case .failure(let error):
+                    print(error)
             }
         }
     }
     
-    static func requestSessao(section: String, pagesQtt: Int, page: Int,handler: JsonNoticiaSessaoHandler?){
-        Alamofire.request(LinkManager.getUriSessao(recurso: section, pageQtt: pagesQtt, page: page)).responseObject {
-            (response: DataResponse<NoticiaSessaoResponse>) in
-            
-            switch(response.result){
-                
-            case .success(let value) :
-                if let noticias = value.noticias {
-                    if let handlerUnwrapped = handler {
-                        handlerUnwrapped(noticias)
-                    }
-                }
-            case .failure(let error):
-                print(error)
+    static func getImage (url: String?, imagem: UIImageView!){
+        if var urlValue = url{
+            if urlValue == "" { urlValue = "https://media.guim.co.uk/208c837d2ca2fdc5c5ffb5e7e3d6a6c4afed2d82/0_0_1300_780/500.jpg" }
+            if let url = URL(string: urlValue){
+                imagem.load.request(with: url, onCompletion: { image, error, operation in
+                    //print("\(operation)")
+
+                    //print("entrei")
+                    let transition = CATransition()
+                    transition.duration = 0.2
+                    transition.type = kCATransitionFade
+                    imagem.layer.add(transition, forKey: nil)
+                    imagem.image = image
+                })
             }
         }
+    }
+    
+    static func requestSessoes(handler: JsonSessaoHandler?){
+    }
+    
+    static func requestSessao(section: String, pagesQtt: Int, page: Int,handler: JsonNoticiaSessaoHandler?){
     }
     
     static func requestPesquisa(section: String, page: Int,query: String, handler: JsonPesquisaHandler?){
         let resource = "search";
-        Alamofire.request(LinkManager.getUriPesquisa(section: section,page: page, recurso: resource, query: query)).responseObject {
-            (response: DataResponse<PesquisaResponse>) in
-            
-            switch(response.result){
-                
-            case .success(let value) :
-                if let noticias = value.pesquisa {
-                    if let handlerUnwrapped = handler {
-                        handlerUnwrapped(noticias)
-                    }
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
     }
     
     static func requestNews(id: String, handler: JsonNoticiaHandler?){
-        Alamofire.request(LinkManager.getUriNoticia(recurso: id)).responseObject {
-            (response: DataResponse<NoticiaResponse>) in
-            
-            switch(response.result){
-                
-            case .success(let value) :
-                if let noticia = value.noticia {
-                    if let handlerUnwrapped = handler {
-                        handlerUnwrapped(noticia)
-                    }
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
+
     }
     
 }

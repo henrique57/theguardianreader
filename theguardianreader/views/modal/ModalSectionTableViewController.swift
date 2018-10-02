@@ -15,8 +15,8 @@ protocol ModalSectionDelegate {
 
 class ModalSectionTableViewController: UITableViewController {
 
-    var sessao = Sessao(id: "",webTitle: "All", apiUrl: "")
-    var sessoes = [Sessao]()
+    var section = Section(id: "",webTitle: "All", apiUrl: "")
+    var sections = [Section]()
     var selectedSections = [Int : String]()
     var todasSelecionadas: Bool = false
     var delegate: ModalSectionDelegate?
@@ -38,7 +38,7 @@ class ModalSectionTableViewController: UITableViewController {
     
     // MARK: - Return the number of rows
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sessoes.count
+        return sections.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -47,10 +47,10 @@ class ModalSectionTableViewController: UITableViewController {
         // Configure the cell...
         switch indexPath.row {
         case 0:
-            cell.labelSessao.text = sessao.webTitle
+            cell.labelSessao.text = section.webTitle
             cell.accessoryType = (todasSelecionadas) ? .checkmark : .none
         default:
-            cell.labelSessao.text = sessoes[indexPath.row-1].webTitle
+            cell.labelSessao.text = sections[indexPath.row-1].webTitle
             cell.accessoryType = (selectedSections[indexPath.row - 1] != nil) ? .checkmark : .none
         }
         
@@ -66,7 +66,7 @@ class ModalSectionTableViewController: UITableViewController {
                     cells.forEach{ $0.accessoryType = .none }
                     selectedSections.removeAll()
                   } else {
-                    if(selectedSections.count == sessoes.count){ checkUncheckFirstCell() }
+                    if(selectedSections.count == sections.count){ checkUncheckFirstCell() }
                     selectedSections.removeValue(forKey: indexPath.row-1)
                     cell.accessoryType = .none
                 }
@@ -74,16 +74,16 @@ class ModalSectionTableViewController: UITableViewController {
                 if(indexPath.row == 0){
                     cells.forEach{ $0.accessoryType = .checkmark }
                     selectedSections.removeAll()
-                    for (index, value) in sessoes.enumerated() {
+                    for (index, value) in sections.enumerated() {
                         selectedSections[index] = value.id
                     }
                 } else {
-                    selectedSections[indexPath.row-1] = sessoes[indexPath.row-1].id
+                    selectedSections[indexPath.row-1] = sections[indexPath.row-1].id
                     cell.accessoryType = .checkmark
-                    if(selectedSections.count == sessoes.count){ checkUncheckFirstCell() }
+                    if(selectedSections.count == sections.count){ checkUncheckFirstCell() }
                 }
             }
-            todasSelecionadas = selectedSections.count == (sessoes.count) ? true : false
+            todasSelecionadas = selectedSections.count == (sections.count) ? true : false
         }
     }
     
@@ -103,11 +103,10 @@ class ModalSectionTableViewController: UITableViewController {
     
     /// Load sections
     func pullSections(){
-        FetchService.requestSessoes(handler: { (items) in
-            if let items = items {
-                self.sessoes += items
-            }
-            self.todasSelecionadas = self.selectedSections.count == (self.sessoes.count) ? true : false
+        let url = LinkManager.getUriSections(recurso: "sections")
+        FetchService.getRequest(url: url, handler: { (items) in
+            self.sections += ResponseService.mapSections(json: items)
+            self.todasSelecionadas = self.selectedSections.count == (self.sections.count) ? true : false
             self.tableView.reloadData()
         })
     }

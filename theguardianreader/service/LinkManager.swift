@@ -28,7 +28,7 @@ class LinkManager {
     static let uriPesquisaSessao = "uriPesquisaSessao"
     static let uriNoticia = "uriNoticia"
     
-    static func getUriSessoes(recurso: String) -> String{
+    static func getUriSections(recurso: String) -> String{
         let contentFile = contentOfFile(path: pathFile, type: pathType)
         if var link = contentFile?[uriSessoes] as? String {
             link = link.replacingOccurrences(of: resourceTag, with: recurso)
@@ -37,7 +37,7 @@ class LinkManager {
         return ""
     }
     
-    static func getUriSessao(recurso: String, pageQtt: Int, page: Int) -> String{
+    static func getUriSectionNotice(recurso: String, pageQtt: Int, page: Int) -> String{
         let contentFile = contentOfFile(path: pathFile, type: pathType)
         if var link = contentFile?[uriSessao] as? String {
             link = link.replacingOccurrences(of: resourceTag, with: recurso)
@@ -49,14 +49,12 @@ class LinkManager {
         return ""
     }
     
-    static func getUriPesquisa(section: String,page: Int, recurso: String, query: String) -> String{
+    static func getUriSearch(section: String,page: Int, recurso: String, query: String) -> String{
         let contentFile = contentOfFile(path: pathFile, type: pathType)
         
         if var link = ((section == "") ? contentFile?[uriPesquisa] : contentFile?[uriPesquisaSessao]) as? String {
             link = link.replacingOccurrences(of: resourceTag, with: recurso)
-            
-            link = link.replacingOccurrences(of: queryTag, with: query)
-            
+            link = link.replacingOccurrences(of: queryTag, with: query)            
             link = link.replacingOccurrences(of: pageQttTag, with: "15")
             link = link.replacingOccurrences(of: pageTag, with: "\(page)")
             
@@ -69,7 +67,7 @@ class LinkManager {
         return ""
     }
     
-    static func getUriNoticia(recurso: String) -> String {
+    static func getUriNotice(recurso: String) -> String {
         let contentFile = contentOfFile(path: pathFile, type: pathType)
         
         if var link = contentFile?[uriNoticia] as? String {
