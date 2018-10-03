@@ -51,6 +51,12 @@ class NoticeSectionTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "noticeCell", for: indexPath) as! NoticeSectionTableViewCell
 
         FetchService.getImage(url: noticeSection[indexPath.row].thumbnail,imagem: cell.imageThumbnail)
+        
+        //cell.imageThumbnail = UIImageView(frame: CGRectMake(0, 0, 100, 100))
+        cell.imageThumbnail.backgroundColor = UIColor.black
+        cell.imageThumbnail.layer.cornerRadius = 8.0
+        cell.imageThumbnail.clipsToBounds = true
+        
         cell.labelData.text = Utils.formatToBrazilianData(data: noticeSection[indexPath.row].webPublicationDate)        
         cell.labelNoticia.text = noticeSection[indexPath.row].webTitle
         

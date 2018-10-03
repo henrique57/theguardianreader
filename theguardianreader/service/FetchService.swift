@@ -20,7 +20,8 @@ typealias JsonHandler = ((JSON) -> ())
 class FetchService {
     
     static func getRequest(url: String, handler: JsonHandler?){
-        Alamofire.request(url).validate().responseJSON {
+        //print(url)
+        Alamofire.request(url).responseJSON {
             (response) in
             switch(response.result){
                 case .success(let value) :

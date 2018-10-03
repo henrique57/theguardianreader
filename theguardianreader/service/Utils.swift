@@ -10,7 +10,7 @@ import UIKit
 
 class Utils {
     
-    static func formatToBrazilianData(data: String?) -> String{
+    static func formatToBrazilianData(data: String?) -> String?{
         var formattedData = "";
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
@@ -24,69 +24,73 @@ class Utils {
         return formattedData
     }
     
-    static func resizeImageHtml(html: String) -> String {
-        // ---------------------------------
-        // GET SCREEN SIZE
-        // ---------------------------------
-        let screenSize = UIScreen.main.bounds
-        let screenWidth = screenSize.width
-        
+    /// Resize the picture and erase iframe tags
+    ///
+    /// - Parameters:
+    ///   - html: Html to be formatted
+    ///   - size: The container size
+    /// - Returns: Html formatted
+    static func resizeImageHtml(html: String, size: CGSize) -> String {
+        var htmlWithouIframe = eraseTag(html: html, tag: "iframe")
+        let contentWidth = size.width
         var strToChange = ""
+        var nroWidth = self.getValueTag(html: htmlWithouIframe, element: "width=\"")
+        var nroHeight = self.getValueTag(html: htmlWithouIframe, element: "height=\"")
         
-        // ---------------------------------
-        // GET THE IMAGE WIDTH
-        // ---------------------------------
-        var nroWidth: Int?
-        if let widthStart = html.range(of: "width=\"") {
-            if let widthEnd = html[widthStart.upperBound...].range(of: "\""){
-                let newStri = html[widthStart.upperBound...]
-                let newStr = newStri[..<widthEnd.lowerBound]
-                //print(newStr)
-                nroWidth = Int(newStr)
-            }
-        }
-        
-        // ---------------------------------
-        // GET THE IMAGE HEIGHT
-        // ---------------------------------
-        var nroHeight: Int?
-        if let widthStart = html.range(of: "height=\"") {
-            if let widthEnd = html[widthStart.upperBound...].range(of: "\""){
-                let newStri = html[widthStart.upperBound...]
-                let newStr = newStri[..<widthEnd.lowerBound]
-                //print(newStr)
-                nroHeight = Int(newStr)
-            }
-        }
-        //print("\(nroWidth) - \(nroHeight)")
-        
-        // ---------------------------------
-        // CALCULATE IMAGE SIZE PROPORCIONALLY
-        // ---------------------------------
-        var tamanho = [Int]()
-        
-        if let nroWidth = nroWidth {
-            if(nroWidth > Int(screenWidth)){
-                let proporcao =  nroWidth / Int(screenWidth)
-                tamanho.append(Int(nroWidth/proporcao))
-                if let nroHeight = nroHeight{
-                    strToChange.append(contentsOf: "width=\"\(nroWidth)\" height=\"\(nroHeight)\"")
-                    tamanho.append(Int(nroHeight/proporcao))
+        repeat{
+            if (nroWidth != nil){
+                var tamanho = [Int]()
+                
+                if let nroWidth = nroWidth {
+                    if(nroWidth > contentWidth){
+                        let proporcao =  nroWidth/contentWidth
+                        tamanho.append(Int((nroWidth/proporcao).rounded()))
+                        if let nroHeight = nroHeight{
+                            strToChange = ("width=\"\(Int(nroWidth))\" height=\"\(Int(nroHeight))\"")
+                            tamanho.append(Int((nroHeight/proporcao).rounded()))
+                        }
+                    }
                 }
+                let strForChange = "width= \"\(tamanho[0])\" height= \"\(tamanho[1])\""
+                htmlWithouIframe = htmlWithouIframe.replacingOccurrences(of: strToChange, with: strForChange)
+                nroWidth = self.getValueTag(html: htmlWithouIframe, element: "width=\"")
+                nroHeight = self.getValueTag(html: htmlWithouIframe, element: "height=\"")
             }
-        }
-        //print(tamanho)
-        //width="1000" height="1000"
-        //var strToChange = "width=\"\(tamanho[0])\" height=\"\(tamanho[1])\""
-        let strForChange = "width=\"\(tamanho[0])\" height=\"\(tamanho[1])\""
-        
-        //html = html.replacingOccurrences(of: strToChange, with: strForChange)
-        
-        print("width=\"\(screenWidth)\"")
-        print(strToChange)
-        print(strForChange)
-        
-        return html.replacingOccurrences(of: strToChange, with: strForChange)
+        } while (nroWidth != nil)
+        return htmlWithouIframe
     }
     
+    static func getValueTag(html: String, element: String) -> CGFloat?{  
+        var number: CGFloat?
+        if let widthStart = html.range(of: element) {
+            if let widthEnd = html[widthStart.upperBound...].range(of: "\""){
+                let newStri = html[widthStart.upperBound...]
+                let newStr = newStri[..<widthEnd.lowerBound]
+                //print(newStr)
+                number = CGFloat(Float(String(newStr)) ?? 0.0)
+            }
+        }
+        return number
+    }
+    
+    static func eraseTag (html: String, tag: String) -> String{
+        //<iframe></iframe>
+        var newHtml = html
+        var widthStart = html.range(of: "<\(tag)")
+        var teste: Bool = false
+        repeat{
+            if let width = widthStart, !width.isEmpty {
+                if let widthEnd = html[width.upperBound...].range(of: "</\(tag)>"){
+                    let newStri = html[width.upperBound...]
+                    let newStr = newStri[..<widthEnd.lowerBound]
+                    
+                    newHtml = newHtml.replacingOccurrences(of: "<\(tag)\(newStr)</\(tag)>", with: "")
+                    teste = (newHtml.replacingOccurrences(of: "<\(tag)\(newStr)</\(tag)>", with: "")) != newHtml
+                }
+                widthStart = html.range(of: "<\(tag)")
+            }
+        }while(teste)
+        
+        return newHtml
+    }
 }

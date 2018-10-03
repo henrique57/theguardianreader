@@ -18,16 +18,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="theguardiantext" translatesAutoresizingMaskIntoConstraints="NO" id="IWi-Vf-bv7">
-                                <rect key="frame" x="54" y="294" width="267" height="78"/>
+                            <imageView autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="theguardiantextwhite" translatesAutoresizingMaskIntoConstraints="NO" id="IWi-Vf-bv7">
+                                <rect key="frame" x="66" y="293" width="242" height="81"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="IWi-Vf-bv7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="54" id="MpT-Ob-mgV"/>
-                            <constraint firstItem="IWi-Vf-bv7" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="eAb-PB-Bir"/>
-                            <constraint firstItem="IWi-Vf-bv7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="274" id="fS1-6o-0cB"/>
-                            <constraint firstItem="IWi-Vf-bv7" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="sD7-l3-pzw"/>
+                            <constraint firstItem="IWi-Vf-bv7" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="2Oi-aI-Mic"/>
+                            <constraint firstItem="IWi-Vf-bv7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="66" id="mTf-ct-qTG"/>
+                            <constraint firstItem="IWi-Vf-bv7" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="pNt-Kg-hZW"/>
+                            <constraint firstItem="IWi-Vf-bv7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="273" id="sUk-Eg-pWS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -38,6 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="theguardiantext" width="1200" height="395"/>
+        <image name="theguardiantextwhite" width="1200" height="395"/>
     </resources>
 </document>

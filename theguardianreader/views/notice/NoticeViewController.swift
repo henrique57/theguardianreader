@@ -37,7 +37,7 @@ class NoticeViewController: UIViewController {
         labelTitle.text = notice.headline
         labelDate.text = Utils.formatToBrazilianData(data: notice.firstPublicationDate)        
         labelSessao.text = notice.sectionName
-        textViewNoticia.text = notice.bodyText
+//        textViewNoticia.text = notice.bodyText
 
 //        //noticia.body?.replacingOccurrences(of: "width: 1000", with: "width: 100")
 //        //noticia.body?.replacingOccurrences(of: "height: 1000", with: "height: 100")
@@ -51,26 +51,26 @@ class NoticeViewController: UIViewController {
 //         }
 //         */
 //
-//        if let body =  noticia.body{
-//            //let styleTag = "<head><style> .gu-image {width:\(screenWidth);height:\(screenWidth);} </style></head>"
-//            //body.insert(contentsOf: styleTag, at: body.startIndex)
-//
-//            // ---------------------------------
-//            // TESTE DA FORMATAÇÃO
-//            // ---------------------------------
-//            //Utils.resizeImageHtml(html: body)
-//
-////            print(textViewNoticia.contentSize())
-//
-////            if let data = body.formatAttribute(){
-////                textViewNoticia.attributedText = data
-////            }
-//            if let data = Utils.resizeImageHtml(html: body).formatAttribute(){
+        if let body =  notice.body{
+            //let styleTag = "<head><style> .gu-image {width:\(screenWidth);height:\(screenWidth);} </style></head>"
+            //body.insert(contentsOf: styleTag, at: body.startIndex)
+
+            // ---------------------------------
+            // TESTE DA FORMATAÇÃO
+            // ---------------------------------
+            //Utils.resizeImageHtml(html: body)
+
+//            print(textViewNoticia.contentSize())
+
+//            if let data = body.formatAttribute(){
 //                textViewNoticia.attributedText = data
 //            }
-//
-//
-//        }
+            if let data = Utils.resizeImageHtml(html: body, size: textViewNoticia.contentSize).formatAttribute(){
+                textViewNoticia.attributedText = data
+            }
+
+
+        }
     }
     
     func pullNoticia(){
