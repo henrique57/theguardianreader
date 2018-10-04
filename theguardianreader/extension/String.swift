@@ -28,4 +28,9 @@ extension String {
         return nil
     }
     
+    func removeSpecialCharsFromString() -> String {
+        let okayChars = Set("abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLKMNOPQRSTUVWXYZ1234567890àÀáéíóúÁÉÍÓÚâêîôûÂÊÎÔÛ")
+        return self.filter {okayChars.contains($0)}
+    }
+    
 }

@@ -48,23 +48,24 @@ class NoticeSectionTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "noticeCell", for: indexPath) as! NoticeSectionTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "noticeCell", for: indexPath) as!      NoticeSectionTableViewCell
 
         FetchService.getImage(url: noticeSection[indexPath.row].thumbnail,imagem: cell.imageThumbnail)
-        
-        //cell.imageThumbnail = UIImageView(frame: CGRectMake(0, 0, 100, 100))
-        cell.imageThumbnail.backgroundColor = UIColor.black
-        cell.imageThumbnail.layer.cornerRadius = 8.0
+
+        cell.imageThumbnail.layer.borderWidth = 0.75
+        cell.imageThumbnail.layer.borderColor = UIColor.darkGray.cgColor
+        cell.imageThumbnail.backgroundColor = UIColor.gray
+        cell.imageThumbnail.layer.cornerRadius = 1.0
         cell.imageThumbnail.clipsToBounds = true
-        
-        cell.labelData.text = Utils.formatToBrazilianData(data: noticeSection[indexPath.row].webPublicationDate)        
+
+        cell.labelData.text = Utils.formatToBrazilianData(data: noticeSection[indexPath.row].webPublicationDate)
         cell.labelNoticia.text = noticeSection[indexPath.row].webTitle
-        
+            
         return cell
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView){
-        if scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height {
+        if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) - 250.0 {
             pullRefreshSessao()
         }
     }
@@ -75,10 +76,21 @@ class NoticeSectionTableViewController: UITableViewController {
             numberPage += 1
             if let section = selectedData{
                 // section: section,pagesQtt: 15,page: numberPage,
-                let url = LinkManager.getUriSectionNotice(recurso: section, pageQtt: 15, page: numberPage)
+                let url = LinkManager.getUriSectionNotice(recurso: section, pageQtt: 20, page: numberPage)
                 FetchService.getRequest(url: url, handler: { (items) in
-                    self.noticeSection += ResponseService.mapNoticeSection(json: items)
-                    self.tableView.reloadData()
+                    let noticeSectionResponse = ResponseService.mapNoticeSection(json: items)
+                    
+                    if self.noticeSection.count == 0 && noticeSectionResponse.count == 0{
+                        self.noticeSection.append(NoticeSection(id: "", webPublicationDate: "", webTitle: "Empty Section", apiUrl: "", thumbnail: ""))
+                        self.tableView.reloadData()
+                    }
+                    
+                    if self.noticeSection.count == 0 || noticeSectionResponse.count != 0 {
+                        self.noticeSection += noticeSectionResponse
+                        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
+                        self.tableView.reloadData()
+                    }
+                    
                     self.isRefreshing = false
                 })
             }

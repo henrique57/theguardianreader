@@ -43,10 +43,10 @@ class FetchService {
                     //print("\(operation)")
 
                     //print("entrei")
-                    let transition = CATransition()
-                    transition.duration = 0.2
-                    transition.type = kCATransitionFade
-                    imagem.layer.add(transition, forKey: nil)
+                    //let transition = CATransition()
+                    //transition.duration = 0.5
+                    //transition.type = kCATransitionMoveIn
+                    //imagem.layer.add(transition, forKey: nil)
                     imagem.image = image
                 })
             }

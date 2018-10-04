@@ -18,11 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="theguardiantextwhite" translatesAutoresizingMaskIntoConstraints="NO" id="IWi-Vf-bv7">
+                            <imageView autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="theguardiantext" translatesAutoresizingMaskIntoConstraints="NO" id="IWi-Vf-bv7">
                                 <rect key="frame" x="66" y="293" width="242" height="81"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.89580439814814816" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="IWi-Vf-bv7" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="2Oi-aI-Mic"/>
                             <constraint firstItem="IWi-Vf-bv7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="66" id="mTf-ct-qTG"/>
@@ -38,6 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="theguardiantextwhite" width="1200" height="395"/>
+        <image name="theguardiantext" width="1200" height="395"/>
     </resources>
 </document>

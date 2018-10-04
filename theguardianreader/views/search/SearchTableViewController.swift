@@ -72,8 +72,10 @@ class SearchTableViewController: UITableViewController, ModalSectionDelegate {
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView){
         if scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height {
-            if  let texto = searchBarNoticia.text{
-                pullRefreshNoticias(section: section, pesquisa: texto)
+            if self.pesquisa.count != 0{
+                if  let texto = searchBarNoticia.text{
+                    pullRefreshNoticias(section: section, pesquisa: texto)
+                }
             }
         }
     }
@@ -82,13 +84,13 @@ class SearchTableViewController: UITableViewController, ModalSectionDelegate {
         if !isRefreshing {
             isRefreshing = true
             numberPage += 1
-            let query = pesquisa.replacingOccurrences(of: " ", with: "+")
+            let query = pesquisa.removeSpecialCharsFromString().replacingOccurrences(of: " ", with: "+")
             let url = LinkManager.getUriSearch(section: section, page: numberPage, recurso: "search", query: query)
             
             FetchService.getRequest(url: url,handler: { (items) in
                 
                 self.pesquisa += ResponseService.mapSearch(json: items)
-                
+                self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
                 self.tableView.reloadData()
                 self.isRefreshing = false
                 

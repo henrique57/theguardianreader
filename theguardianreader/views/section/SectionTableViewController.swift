@@ -40,7 +40,7 @@ class SectionTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sectionCell", for: indexPath) as! SectionTableViewCell
-
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
         cell.labelTitle.text = sections[indexPath.row].webTitle
         return cell
     }
