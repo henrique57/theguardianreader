@@ -10,11 +10,8 @@ import Alamofire
 import SwiftyJSON
 import ImageLoader
 
-typealias JsonSessaoHandler = (([Section]?) -> ())
-typealias JsonNoticiaSessaoHandler = (([NoticeSection]?) -> ())
-typealias JsonNoticiaHandler = ((Notice?) -> ())
-typealias JsonPesquisaHandler = (([Search]?) -> ())
 typealias JsonHandler = ((JSON) -> ())
+typealias ImageHandler = (() -> ())
 
 
 class FetchService {
@@ -35,18 +32,20 @@ class FetchService {
         }
     }
     
-    static func getImage (url: String?, imagem: UIImageView!){
+    static func getImage (url: String?, imagem: UIImageView!, handler: ImageHandler?){
         if var urlValue = url{
             if urlValue == "" { urlValue = "https://media.guim.co.uk/208c837d2ca2fdc5c5ffb5e7e3d6a6c4afed2d82/0_0_1300_780/500.jpg" }
             if let url = URL(string: urlValue){
                 imagem.load.request(with: url, onCompletion: { image, error, operation in
-                    //print("\(operation)")
-
-                    //print("entrei")
                     //let transition = CATransition()
                     //transition.duration = 0.5
                     //transition.type = kCATransitionMoveIn
                     //imagem.layer.add(transition, forKey: nil)
+                    
+                    if let handlerUnwrapped = handler {
+                        handlerUnwrapped()
+                    }
+                    
                     imagem.image = image
                 })
             }

@@ -1,24 +1,28 @@
 PODS:
   - Alamofire (4.7.3)
   - ImageLoader (0.14.0)
+  - JTMaterialSpinner (2.0.3)
   - SwiftyJSON (4.1.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
   - ImageLoader
+  - JTMaterialSpinner
   - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - ImageLoader
+    - JTMaterialSpinner
     - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   ImageLoader: 56f57e35d6ed26a74183dc2e472133b4b22eb7b9
+  JTMaterialSpinner: 3c4279fc0b72438c9e29712fd37cf616d20c613e
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
 
-PODFILE CHECKSUM: ed94d4d8db3eaf563701d6ddc29abff415e989ac
+PODFILE CHECKSUM: 9d5f8a606f52e65e30cf955918214cffa9aa05c4
 
 COCOAPODS: 1.5.3

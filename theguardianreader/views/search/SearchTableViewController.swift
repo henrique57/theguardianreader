@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JTMaterialSpinner
 
 class SearchTableViewController: UITableViewController, ModalSectionDelegate {
 
@@ -16,11 +17,18 @@ class SearchTableViewController: UITableViewController, ModalSectionDelegate {
     var numberPage : Int = 0
     var isRefreshing : Bool = false
     var selectedSections = [Int : String]()
+    var spinnerView = JTMaterialSpinner()
 
     @IBOutlet weak var buttonFilter: UIButton!
     
     override func viewWillAppear(_ animated: Bool) {    
         super.viewWillAppear(animated)
+        
+        spinnerView.circleLayer.lineWidth = 3.0
+        spinnerView.circleLayer.strokeColor = UIColor.black.cgColor
+        spinnerView.animationDuration = 1
+        self.view.addSubview(spinnerView)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -69,6 +77,14 @@ class SearchTableViewController: UITableViewController, ModalSectionDelegate {
         
         return cell
     }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: nil) {
+            _ in
+            self.positionSpinner()
+        }
+    }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView){
         if scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height {
@@ -80,18 +96,36 @@ class SearchTableViewController: UITableViewController, ModalSectionDelegate {
         }
     }
     
+    func beginSpinner (){
+        positionSpinner()
+        self.spinnerView.isHidden = false
+        self.spinnerView.beginRefreshing()
+    }
+    func stopSpinner () {
+        self.spinnerView.isHidden = true
+        self.spinnerView.endRefreshing()
+    }
+    
+    func positionSpinner () {
+        let contentFrame = UIScreen.main.bounds
+        self.spinnerView.frame = CGRect(x: UIDevice.current.orientation.isLandscape ? contentFrame.width/2.15 : contentFrame.width/2.25, y: contentFrame.height/2.75, width: 50, height: 50)
+    }
+    
+    
     func pullRefreshNoticias(section: String, pesquisa: String){
         if !isRefreshing {
             isRefreshing = true
             numberPage += 1
             let query = pesquisa.removeSpecialCharsFromString().replacingOccurrences(of: " ", with: "+")
             let sectionFormatted = section.getPercentString()
-            let url = LinkManager.getUriSearch(section: sectionFormatted, pageQtt: 15, page: numberPage, resource: "search", query: query)
             
+            let url = LinkManager.getUriSearch(section: sectionFormatted, pageQtt: 15, page: numberPage, resource: "search", query: query)
+            self.beginSpinner()
             FetchService.getRequest(url: url,handler: { (items) in
                 
                 self.pesquisa += ResponseService.mapSearch(json: items)
                 self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
+                self.stopSpinner()
                 self.tableView.reloadData()
                 self.isRefreshing = false
                 

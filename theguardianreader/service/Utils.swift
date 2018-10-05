@@ -31,7 +31,9 @@ class Utils {
     ///   - size: The container size
     /// - Returns: Html formatted
     static func resizeImageHtml(html: String, size: CGSize) -> String {
-        var htmlWithouIframe = eraseTag(html: html, tag: "iframe")
+        var htmlWithouIframe = eraseTag(html: html, tag: "blockquote")
+        htmlWithouIframe = eraseTag(html: htmlWithouIframe, tag: "figcaption")
+        htmlWithouIframe = eraseTag(html: htmlWithouIframe, tag: "iframe")
         let contentWidth = size.width
         var strToChange = ""
         var nroWidth = self.getValueTag(html: htmlWithouIframe, element: "width=\"")

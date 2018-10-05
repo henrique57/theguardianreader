@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JTMaterialSpinner
 
 class NoticeSectionTableViewController: UITableViewController {
 
@@ -15,9 +16,14 @@ class NoticeSectionTableViewController: UITableViewController {
     var titulo: String?
     var isRefreshing : Bool = false
     var noticeSection = [NoticeSection]()
+    var spinnerView = JTMaterialSpinner()
  
     override func viewWillAppear(_ animated: Bool) {
         self.title = titulo
+        spinnerView.circleLayer.lineWidth = 3.0
+        spinnerView.circleLayer.strokeColor = UIColor.black.cgColor
+        spinnerView.animationDuration = 1
+        self.view.addSubview(spinnerView)
         self.pullRefreshSessao()
     }
 
@@ -50,7 +56,9 @@ class NoticeSectionTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "noticeCell", for: indexPath) as!      NoticeSectionTableViewCell
 
-        FetchService.getImage(url: noticeSection[indexPath.row].thumbnail,imagem: cell.imageThumbnail)
+        FetchService.getImage(url: noticeSection[indexPath.row].thumbnail,imagem: cell.imageThumbnail){ () in
+            
+        }
 
         cell.imageThumbnail.layer.borderWidth = 0.75
         cell.imageThumbnail.layer.borderColor = UIColor.darkGray.cgColor
@@ -70,14 +78,41 @@ class NoticeSectionTableViewController: UITableViewController {
         }
     }
     
+    func beginSpinner (){
+        positionSpinner()
+        self.spinnerView.isHidden = false
+        self.spinnerView.beginRefreshing()
+    }
+    func stopSpinner () {
+        self.spinnerView.isHidden = true
+        self.spinnerView.endRefreshing()
+    }
+    
+    func positionSpinner () {
+        let contentFrame = UIScreen.main.bounds
+        self.spinnerView.frame = CGRect(x: UIDevice.current.orientation.isLandscape ? contentFrame.width/2.15 : contentFrame.width/2.25, y: contentFrame.height/2.75, width: 50, height: 50)
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: nil) {
+            _ in
+            self.positionSpinner()
+        }
+    }
+    
     func pullRefreshSessao(){
+        self.spinnerView.beginRefreshing()
         if !isRefreshing {
             isRefreshing = true
             numberPage += 1
             if let section = selectedData{
+                self.beginSpinner()
                 let url = LinkManager.getUriSectionNotice(resource: section, pageQtt: 20, page: numberPage)
                 FetchService.getRequest(url: url, handler: { (items) in
                     let noticeSectionResponse = ResponseService.mapNoticeSection(json: items)
+                    
+                    self.stopSpinner()
                     
                     if self.noticeSection.count == 0 && noticeSectionResponse.count == 0{
                         self.noticeSection.append(NoticeSection(id: "", webPublicationDate: "", webTitle: "Empty Section", apiUrl: "", thumbnail: ""))

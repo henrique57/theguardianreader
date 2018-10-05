@@ -7,15 +7,49 @@
 //
 
 import UIKit
-import SwiftyJSON
+import JTMaterialSpinner
 
 class SectionTableViewController: UITableViewController {
 
     var sections = [Section]()
+    var spinnerView = JTMaterialSpinner()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        spinnerView.circleLayer.lineWidth = 3.0
+        spinnerView.circleLayer.strokeColor = UIColor.black.cgColor
+        spinnerView.animationDuration = 1
+        self.view.addSubview(spinnerView)
+        
         pullSessoes()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    func beginSpinner (){
+        positionSpinner()
+        self.spinnerView.isHidden = false
+        self.spinnerView.beginRefreshing()
+    }
+    func stopSpinner () {
+        self.spinnerView.isHidden = true
+        self.spinnerView.endRefreshing()
+    }
+    
+    func positionSpinner () {
+        let contentFrame = UIScreen.main.bounds
+        self.spinnerView.frame = CGRect(x: UIDevice.current.orientation.isLandscape ? contentFrame.width/2.15 : contentFrame.width/2.25, y: contentFrame.height/2.75, width: 50, height: 50)
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: nil) {
+            _ in
+            self.positionSpinner()
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -47,8 +81,10 @@ class SectionTableViewController: UITableViewController {
     
     func pullSessoes(){
         let url = LinkManager.getDomainApikeyResource(resource: "sections")
+        beginSpinner()
         FetchService.getRequest(url: url) { (items) in
             self.sections = ResponseService.mapSections(json: items)
+            self.stopSpinner()
             self.tableView.reloadData()
         }
     }
