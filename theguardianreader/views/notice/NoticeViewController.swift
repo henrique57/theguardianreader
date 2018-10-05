@@ -54,7 +54,7 @@ class NoticeViewController: UIViewController {
     
     func pullNotice(){
         if let notice = selectedData {
-            let url = LinkManager.getUriNotice(recurso: notice)
+            let url = LinkManager.getUriNotice(resource: notice)
             FetchService.getRequest(url: url, handler: { (item) in
                 self.pullNews(notice: ResponseService.mapNotice(json: item))                
             })

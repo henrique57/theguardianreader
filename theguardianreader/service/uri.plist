@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>domain</key>
+	<string>https://content.guardianapis.com/&lt;resource&gt;</string>
+	<key>api-key</key>
+	<string>?api-key=cf6a8a21-ab8c-4ed5-94d0-80a7c892eb82</string>
+	<key>page-url</key>
+	<string>&amp;page-size=&lt;pageQtt&gt;&amp;page=&lt;page&gt;</string>
+	<key>order-url</key>
+	<string>&amp;order-by=&lt;order&gt;</string>
+	<key>query-url</key>
+	<string>&amp;q=&lt;query&gt;</string>
+	<key>show-url</key>
+	<string>&amp;show-elements=image&amp;show-fields=all</string>
+	<key>section-url</key>
+	<string>&amp;section=&lt;section&gt;</string>
+</dict>
+</plist>

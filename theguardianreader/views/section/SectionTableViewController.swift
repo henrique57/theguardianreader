@@ -46,7 +46,7 @@ class SectionTableViewController: UITableViewController {
     }
     
     func pullSessoes(){
-        let url = LinkManager.getUriSections(recurso: "sections")
+        let url = LinkManager.getDomainApikeyResource(resource: "sections")
         FetchService.getRequest(url: url) { (items) in
             self.sections = ResponseService.mapSections(json: items)
             self.tableView.reloadData()

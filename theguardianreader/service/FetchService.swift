@@ -18,9 +18,9 @@ typealias JsonHandler = ((JSON) -> ())
 
 
 class FetchService {
-    
     static func getRequest(url: String, handler: JsonHandler?){
         //print(url)
+        
         Alamofire.request(url).responseJSON {
             (response) in
             switch(response.result){
@@ -52,19 +52,4 @@ class FetchService {
             }
         }
     }
-    
-    static func requestSessoes(handler: JsonSessaoHandler?){
-    }
-    
-    static func requestSessao(section: String, pagesQtt: Int, page: Int,handler: JsonNoticiaSessaoHandler?){
-    }
-    
-    static func requestPesquisa(section: String, page: Int,query: String, handler: JsonPesquisaHandler?){
-        let resource = "search";
-    }
-    
-    static func requestNews(id: String, handler: JsonNoticiaHandler?){
-
-    }
-    
 }

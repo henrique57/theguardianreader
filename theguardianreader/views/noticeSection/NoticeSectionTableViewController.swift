@@ -54,7 +54,7 @@ class NoticeSectionTableViewController: UITableViewController {
 
         cell.imageThumbnail.layer.borderWidth = 0.75
         cell.imageThumbnail.layer.borderColor = UIColor.darkGray.cgColor
-        cell.imageThumbnail.backgroundColor = UIColor.gray
+        cell.imageThumbnail.backgroundColor = UIColor.lightGray
         cell.imageThumbnail.layer.cornerRadius = 1.0
         cell.imageThumbnail.clipsToBounds = true
 
@@ -65,7 +65,7 @@ class NoticeSectionTableViewController: UITableViewController {
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView){
-        if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) - 250.0 {
+        if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) - 300.0 {
             pullRefreshSessao()
         }
     }
@@ -75,8 +75,7 @@ class NoticeSectionTableViewController: UITableViewController {
             isRefreshing = true
             numberPage += 1
             if let section = selectedData{
-                // section: section,pagesQtt: 15,page: numberPage,
-                let url = LinkManager.getUriSectionNotice(recurso: section, pageQtt: 20, page: numberPage)
+                let url = LinkManager.getUriSectionNotice(resource: section, pageQtt: 20, page: numberPage)
                 FetchService.getRequest(url: url, handler: { (items) in
                     let noticeSectionResponse = ResponseService.mapNoticeSection(json: items)
                     

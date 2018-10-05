@@ -85,7 +85,8 @@ class SearchTableViewController: UITableViewController, ModalSectionDelegate {
             isRefreshing = true
             numberPage += 1
             let query = pesquisa.removeSpecialCharsFromString().replacingOccurrences(of: " ", with: "+")
-            let url = LinkManager.getUriSearch(section: section, page: numberPage, recurso: "search", query: query)
+            let sectionFormatted = section.getPercentString()
+            let url = LinkManager.getUriSearch(section: sectionFormatted, pageQtt: 15, page: numberPage, resource: "search", query: query)
             
             FetchService.getRequest(url: url,handler: { (items) in
                 

@@ -30,7 +30,7 @@
 		E6DE69BD2152B0EC00ADD969 /* NoticeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DE69BC2152B0EC00ADD969 /* NoticeSection.swift */; };
 		E6DE69C02152DE5A00ADD969 /* FetchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DE69BF2152DE5A00ADD969 /* FetchService.swift */; };
 		E6DE69C821541B1800ADD969 /* LinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DE69C721541B1800ADD969 /* LinkManager.swift */; };
-		E6DE69CA215421ED00ADD969 /* dados.plist in Resources */ = {isa = PBXBuildFile; fileRef = E6DE69C9215421ED00ADD969 /* dados.plist */; };
+		E6DE69CA215421ED00ADD969 /* uri.plist in Resources */ = {isa = PBXBuildFile; fileRef = E6DE69C9215421ED00ADD969 /* uri.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,7 +60,7 @@
 		E6DE69BC2152B0EC00ADD969 /* NoticeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeSection.swift; sourceTree = "<group>"; };
 		E6DE69BF2152DE5A00ADD969 /* FetchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchService.swift; sourceTree = "<group>"; };
 		E6DE69C721541B1800ADD969 /* LinkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkManager.swift; sourceTree = "<group>"; };
-		E6DE69C9215421ED00ADD969 /* dados.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = dados.plist; sourceTree = "<group>"; };
+		E6DE69C9215421ED00ADD969 /* uri.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = uri.plist; sourceTree = "<group>"; };
 		FA85BAA28AAF420C40D14448 /* Pods-theguardianreader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-theguardianreader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-theguardianreader/Pods-theguardianreader.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -188,10 +188,10 @@
 		E6DE69BE2152DDC000ADD969 /* service */ = {
 			isa = PBXGroup;
 			children = (
-				E6DE69C9215421ED00ADD969 /* dados.plist */,
+				E6DE69C9215421ED00ADD969 /* uri.plist */,
+				E6DE69C721541B1800ADD969 /* LinkManager.swift */,
 				E6DE69BF2152DE5A00ADD969 /* FetchService.swift */,
 				E66A50162162ACD000607F37 /* ResponseService.swift */,
-				E6DE69C721541B1800ADD969 /* LinkManager.swift */,
 				E6C38BD2215EB6CC006CFC60 /* Utils.swift */,
 			);
 			path = service;
@@ -275,7 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6B23E1121513B04006B638F /* LaunchScreen.storyboard in Resources */,
-				E6DE69CA215421ED00ADD969 /* dados.plist in Resources */,
+				E6DE69CA215421ED00ADD969 /* uri.plist in Resources */,
 				E6B23E0E21513B04006B638F /* Assets.xcassets in Resources */,
 				E6B23E0C21513AFD006B638F /* Main.storyboard in Resources */,
 			);
