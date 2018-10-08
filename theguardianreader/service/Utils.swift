@@ -30,49 +30,83 @@ class Utils {
     ///   - html: Html to be formatted
     ///   - size: The container size
     /// - Returns: Html formatted
-    static func resizeImageHtml(html: String, size: CGSize) -> String {
-        var htmlWithouIframe = eraseTag(html: html, tag: "blockquote")
-        htmlWithouIframe = eraseTag(html: htmlWithouIframe, tag: "figcaption")
-        htmlWithouIframe = eraseTag(html: htmlWithouIframe, tag: "iframe")
-        let contentWidth = size.width
-        var strToChange = ""
-        var nroWidth = self.getValueTag(html: htmlWithouIframe, element: "width=\"")
-        var nroHeight = self.getValueTag(html: htmlWithouIframe, element: "height=\"")
+    static func resizeImgElements(html: String, size: CGSize) -> String{
+        let deviceWidth = size.width
+        var hasSomething : Bool = false
+        var htmlToResize = html
+        var oldElement = ""
+        var newElement = ""
+        var width : Float
+        var height : Float
+        var proporcao : Float
         
-        repeat{
-            if (nroWidth != nil){
-                var tamanho = [Int]()
-                
-                if let nroWidth = nroWidth {
-                    if(nroWidth > contentWidth){
-                        let proporcao =  nroWidth/contentWidth
-                        tamanho.append(Int((nroWidth/proporcao).rounded()))
-                        if let nroHeight = nroHeight{
-                            strToChange = ("width=\"\(Int(nroWidth))\" height=\"\(Int(nroHeight))\"")
-                            tamanho.append(Int((nroHeight/proporcao).rounded()))
-                        }
-                    }
+        oldElement = getElement(html: htmlToResize, element: "img")
+        if (oldElement != ""){
+            repeat{
+                width = getValueTag(html: oldElement, tag: "width")
+                height = getValueTag(html: oldElement, tag: "height")
+                newElement = oldElement.replacingOccurrences(of: "<img src=", with: "<img src =")
+                newElement = newElement.replacingOccurrences(of: "class=\"gu-image\"", with: "")
+                if(width > Float(deviceWidth)){
+                    proporcao =  width/Float(deviceWidth)
+                    newElement = newElement.replacingOccurrences(of: "width=\"\(Int(width))\"", with: "width=\"\(Int((width/proporcao).rounded()))\"")
+                    newElement = newElement.replacingOccurrences(of: "height=\"\(Int(height))\"", with: "height=\"\(Int((height/proporcao).rounded()))\"")
+                }else {
+                    proporcao =  Float(deviceWidth)/width
+                    newElement = newElement.replacingOccurrences(of: "width=\"\(Int(width))\"", with: "width=\"\(Int(width*proporcao.rounded()))\"")
+                    newElement = newElement.replacingOccurrences(of: "height=\"\(Int(height))\"", with: "height=\"\(Int(height*proporcao.rounded()))\"")
                 }
-                let strForChange = "width= \"\(tamanho[0])\" height= \"\(tamanho[1])\""
-                htmlWithouIframe = htmlWithouIframe.replacingOccurrences(of: strToChange, with: strForChange)
-                nroWidth = self.getValueTag(html: htmlWithouIframe, element: "width=\"")
-                nroHeight = self.getValueTag(html: htmlWithouIframe, element: "height=\"")
-            }
-        } while (nroWidth != nil)
-        return htmlWithouIframe
+                htmlToResize = htmlToResize.replacingOccurrences(of: oldElement, with: newElement)
+                oldElement = getElement(html: htmlToResize, element: "img")
+                hasSomething = (oldElement != "") ? true : false
+            }while(hasSomething)
+        }
+        
+        return formatHtml(html: htmlToResize)
     }
     
-    static func getValueTag(html: String, element: String) -> CGFloat?{  
-        var number: CGFloat?
-        if let widthStart = html.range(of: element) {
+    static func formatHtml(html: String) -> String{
+        var newHtml = html
+        newHtml = eraseTag(html: newHtml, tag: "blockquote")
+        newHtml = eraseTag(html: newHtml, tag: "figcaption")
+        return eraseTag(html: newHtml, tag: "iframe")
+    }
+    
+    static func getValueTag(html: String, tag: String) -> Float{
+        var number = Float(0.0)
+        if let widthStart = html.range(of: "\(tag)=\"") {
             if let widthEnd = html[widthStart.upperBound...].range(of: "\""){
                 let newStri = html[widthStart.upperBound...]
                 let newStr = newStri[..<widthEnd.lowerBound]
                 //print(newStr)
-                number = CGFloat(Float(String(newStr)) ?? 0.0)
+                number = (Float(String(newStr)) ?? 0.0)
             }
         }
         return number
+    }
+    
+    static func getElement (html: String, element: String) -> String{
+        //<iframe></iframe>
+        let widthStart = html.range(of: "<\(element) src=")
+        if let width = widthStart, !width.isEmpty {
+            if let widthEnd = html[width.upperBound...].range(of: ">"){
+                return "<\(element) src=\(html[width.upperBound...][..<widthEnd.lowerBound])>"
+            }
+        }
+        
+        return ""
+    }
+    
+    static func getOpenElement (html: String, element: String) -> String{
+        //<iframe></iframe>
+        let widthStart = html.range(of: "<\(element)")
+        if let width = widthStart, !width.isEmpty {
+            if let widthEnd = html[width.upperBound...].range(of: "</\(element)>"){
+                return String(html[width.upperBound...][..<widthEnd.lowerBound])
+            }
+        }
+        
+        return ""
     }
     
     static func eraseTag (html: String, tag: String) -> String{
@@ -83,8 +117,7 @@ class Utils {
         repeat{
             if let width = widthStart, !width.isEmpty {
                 if let widthEnd = html[width.upperBound...].range(of: "</\(tag)>"){
-                    let newStri = html[width.upperBound...]
-                    let newStr = newStri[..<widthEnd.lowerBound]
+                    let newStr = html[width.upperBound...][..<widthEnd.lowerBound]
                     
                     newHtml = newHtml.replacingOccurrences(of: "<\(tag)\(newStr)</\(tag)>", with: "")
                     teste = (newHtml.replacingOccurrences(of: "<\(tag)\(newStr)</\(tag)>", with: "")) != newHtml

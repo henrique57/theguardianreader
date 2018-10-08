@@ -16,7 +16,7 @@ typealias ImageHandler = (() -> ())
 
 class FetchService {
     static func getRequest(url: String, handler: JsonHandler?){
-        //print(url)
+        print(url)
         
         Alamofire.request(url).responseJSON {
             (response) in

@@ -12,7 +12,7 @@ import JTMaterialSpinner
 class SearchTableViewController: UITableViewController, ModalSectionDelegate {
 
     @IBOutlet weak var searchBarNoticia: UISearchBar!
-    var pesquisa = [Search]()
+    var search = [Search]()
     var section = ""
     var numberPage : Int = 0
     var isRefreshing : Bool = false
@@ -48,7 +48,7 @@ class SearchTableViewController: UITableViewController, ModalSectionDelegate {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return pesquisa.count
+        return search.count
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -65,15 +65,15 @@ class SearchTableViewController: UITableViewController, ModalSectionDelegate {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "noticeSegue", sender: pesquisa[(indexPath.row)].id)
+        self.performSegue(withIdentifier: "noticeSegue", sender: search[(indexPath.row)].id)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath) as! SearchTableViewCell
         
-        cell.labelNoticia.text = pesquisa[(indexPath.row)].webTitle
-        cell.labelDataPublicacao.text = Utils.formatToBrazilianData(data: pesquisa[(indexPath.row)].webPublicationDate)
-        cell.labelSessao.text = pesquisa[(indexPath.row)].section
+        cell.labelNoticia.text = search[(indexPath.row)].webTitle
+        cell.labelDataPublicacao.text = Utils.formatToBrazilianData(data: search[(indexPath.row)].webPublicationDate)
+        cell.labelSessao.text = search[(indexPath.row)].section
         
         return cell
     }
@@ -87,8 +87,8 @@ class SearchTableViewController: UITableViewController, ModalSectionDelegate {
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView){
-        if scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height {
-            if self.pesquisa.count != 0{
+        if scrollView.contentOffset.y >= scrollView.contentSize.height - (scrollView.frame.size.height-250) {
+            if self.search.count != 0{
                 if  let texto = searchBarNoticia.text{
                     pullRefreshNoticias(section: section, pesquisa: texto)
                 }
@@ -123,10 +123,26 @@ class SearchTableViewController: UITableViewController, ModalSectionDelegate {
             self.beginSpinner()
             FetchService.getRequest(url: url,handler: { (items) in
                 
-                self.pesquisa += ResponseService.mapSearch(json: items)
-                self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
+                //self.pesquisa += ResponseService.mapSearch(json: items)
+                let searchResponse = ResponseService.mapSearch(json: items)
+                
+                //self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
                 self.stopSpinner()
-                self.tableView.reloadData()
+                
+                if self.search.count == 0 && searchResponse.count == 0{
+                    self.search.append(Search(id: "", section: "", webPublicationDate: "", webTitle: "Nothing Found"))
+                    self.tableView.isScrollEnabled = false;
+                    self.tableView.reloadData()
+                }
+                
+                if self.search.count == 0 || searchResponse.count != 0 {
+                    self.search += searchResponse
+                    self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
+                    self.tableView.isScrollEnabled = true;
+                    self.tableView.reloadData()
+                }
+                
+                //self.tableView.reloadData()
                 self.isRefreshing = false
                 
             })
@@ -134,9 +150,10 @@ class SearchTableViewController: UITableViewController, ModalSectionDelegate {
     }
         
     func getSessao(with selectedSections: [Int : String]){
+        self.search.removeAll()
         if let pesquisa = searchBarNoticia.text  {
             self.selectedSections = selectedSections
-            self.pesquisa.removeAll()
+            //self.search.removeAll()
             pullRefreshNoticias(section: prepareData(), pesquisa: pesquisa)
         }
     }
@@ -157,10 +174,9 @@ extension SearchTableViewController:  UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let text = searchBarNoticia.text{
             self.numberPage = 0
-            pesquisa.removeAll()
+            search.removeAll()
             pullRefreshNoticias(section: section, pesquisa: text)
-            
-            self.tableView.reloadData()
+            //self.tableView.reloadData()
         }
     }
 }

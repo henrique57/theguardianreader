@@ -86,10 +86,12 @@ class NoticeViewController: UIViewController {
         labelDate.text = Utils.formatToBrazilianData(data: notice.firstPublicationDate)        
         labelSessao.text = notice.sectionName
         if let body =  notice.body{
-            if let data = Utils.resizeImageHtml(html: body, size: textViewNoticia.contentSize).formatAttribute(){
+            if let data = Utils.resizeImgElements(html: body, size: textViewNoticia.contentSize).formatAttribute(){
+            //if let data = (Utils.formatHtml(html: body)).formatAttribute(){
                 textViewNoticia.attributedText = data
             }
         }
+        
     }
     
     func pullNotice(){
