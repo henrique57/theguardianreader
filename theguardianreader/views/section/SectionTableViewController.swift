@@ -21,8 +21,9 @@ class SectionTableViewController: UITableViewController {
         spinnerView.circleLayer.strokeColor = UIColor.black.cgColor
         spinnerView.animationDuration = 1
         self.view.addSubview(spinnerView)
-        
-        pullSessoes()
+        if sections.count == 0{
+            pullSessoes()
+        }
     }
     
     override func viewDidLoad() {

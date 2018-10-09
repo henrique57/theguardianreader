@@ -22,8 +22,7 @@ class SearchTableViewController: UITableViewController, ModalSectionDelegate {
     @IBOutlet weak var buttonFilter: UIButton!
     
     override func viewWillAppear(_ animated: Bool) {    
-        super.viewWillAppear(animated)
-        
+        super.viewWillAppear(animated)        
         spinnerView.circleLayer.lineWidth = 3.0
         spinnerView.circleLayer.strokeColor = UIColor.black.cgColor
         spinnerView.animationDuration = 1
@@ -87,7 +86,7 @@ class SearchTableViewController: UITableViewController, ModalSectionDelegate {
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView){
-        if scrollView.contentOffset.y >= scrollView.contentSize.height - (scrollView.frame.size.height-250) {
+        if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)-300 {
             if self.search.count != 0{
                 if  let texto = searchBarNoticia.text{
                     pullRefreshNoticias(section: section, pesquisa: texto)

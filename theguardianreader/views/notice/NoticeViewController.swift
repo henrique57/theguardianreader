@@ -32,12 +32,14 @@ class NoticeViewController: UIViewController {
         spinnerImgView.circleLayer.lineWidth = 1.0
         spinnerImgView.circleLayer.strokeColor = UIColor.black.cgColor
         spinnerImgView.animationDuration = 1
-        self.view.addSubview(spinnerImgView)
+        //self.view.addSubview(spinnerImgView)
+        
         
         spinnerView.circleLayer.lineWidth = 3.0
         spinnerView.circleLayer.strokeColor = UIColor.black.cgColor
         spinnerView.animationDuration = 1
         self.view.addSubview(spinnerView)
+        
         
         pullNotice()
     }
@@ -71,12 +73,13 @@ class NoticeViewController: UIViewController {
         
         let positionWidth = UIDevice.current.orientation.isLandscape ? contentFrame.width/2.15 : contentFrame.width/2.25
         
-        self.spinnerImgView.frame = CGRect(x: positionWidthImg, y: contentFrame.height / 6, width: 15, height: 15)
+        self.spinnerImgView.frame = CGRect(x: positionWidthImg, y: contentFrame.height/4 / 2.0, width: 15, height: 15)
         
         self.spinnerView.frame = CGRect(x: positionWidth, y: contentFrame.height/2.75, width: 50, height: 50)
     }
     
     func pullNews(notice: Notice){
+        self.imageViewThumbnail.addSubview(spinnerImgView)
         self.spinnerImgView.beginRefreshing()
         FetchService.getImage(url: notice.thumbnail, imagem: imageViewThumbnail){ () in
             self.spinnerImgView.endRefreshing()
@@ -86,12 +89,11 @@ class NoticeViewController: UIViewController {
         labelDate.text = Utils.formatToBrazilianData(data: notice.firstPublicationDate)        
         labelSessao.text = notice.sectionName
         if let body =  notice.body{
-            if let data = Utils.resizeImgElements(html: body, size: textViewNoticia.contentSize).formatAttribute(){
+            if let data = Utils.resizeImgElements(html: body, size: textViewNoticia.contentSize).formatWithFont(font: "Apple SD Gothic Neo"){
             //if let data = (Utils.formatHtml(html: body)).formatAttribute(){
                 textViewNoticia.attributedText = data
             }
         }
-        
     }
     
     func pullNotice(){

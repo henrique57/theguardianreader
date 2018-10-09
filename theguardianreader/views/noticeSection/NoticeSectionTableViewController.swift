@@ -24,7 +24,9 @@ class NoticeSectionTableViewController: UITableViewController {
         spinnerView.circleLayer.strokeColor = UIColor.black.cgColor
         spinnerView.animationDuration = 1
         self.view.addSubview(spinnerView)
-        self.pullRefreshSessao()
+        if noticeSection.count == 0{
+            self.pullRefreshSessao()
+        }
     }
 
     override func didReceiveMemoryWarning() {

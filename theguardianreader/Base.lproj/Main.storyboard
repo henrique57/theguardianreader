@@ -178,12 +178,12 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPU-Gk-IiF">
-                                        <rect key="frame" x="15" y="280" width="345" height="33"/>
+                                        <rect key="frame" x="15" y="280" width="345" height="45"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Notice">
                                                 <attributes>
-                                                    <font key="NSFont" metaFont="system" size="14"/>
+                                                    <font key="NSFont" size="24" name="ComicSansMS"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
@@ -204,14 +204,13 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="jPU-Gk-IiF" firstAttribute="leading" secondItem="EgT-85-h2e" secondAttribute="leading" constant="15" id="1vi-V3-8hM"/>
-                                    <constraint firstItem="H4i-dn-7PC" firstAttribute="centerX" secondItem="jPU-Gk-IiF" secondAttribute="centerX" id="43I-m5-yzO"/>
                                     <constraint firstItem="uSs-Ec-KNZ" firstAttribute="bottom" secondItem="H4i-dn-7PC" secondAttribute="bottom" id="4T3-xd-qRY"/>
                                     <constraint firstAttribute="trailing" secondItem="jPU-Gk-IiF" secondAttribute="trailing" constant="15" id="5ZX-e3-Nmn"/>
                                     <constraint firstItem="zlM-ev-euo" firstAttribute="top" secondItem="H4i-dn-7PC" secondAttribute="bottom" constant="10" id="62r-df-jPc"/>
                                     <constraint firstItem="uSs-Ec-KNZ" firstAttribute="top" secondItem="EgT-85-h2e" secondAttribute="top" id="B8x-Rd-rLK"/>
                                     <constraint firstItem="Gia-yc-cpb" firstAttribute="leading" secondItem="H4i-dn-7PC" secondAttribute="leading" id="FO1-ai-j4h"/>
                                     <constraint firstItem="uSs-Ec-KNZ" firstAttribute="leading" secondItem="EgT-85-h2e" secondAttribute="leading" id="KWN-hb-UcR"/>
-                                    <constraint firstAttribute="bottom" secondItem="jPU-Gk-IiF" secondAttribute="bottom" constant="241" id="Lfv-sn-aTZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="jPU-Gk-IiF" secondAttribute="bottom" id="Lfv-sn-aTZ"/>
                                     <constraint firstItem="Gia-yc-cpb" firstAttribute="leading" secondItem="EgT-85-h2e" secondAttribute="leading" constant="10" id="Nge-py-fWt"/>
                                     <constraint firstItem="Gia-yc-cpb" firstAttribute="top" secondItem="EgT-85-h2e" secondAttribute="top" constant="10" id="USa-vs-G1h"/>
                                     <constraint firstItem="H4i-dn-7PC" firstAttribute="leading" secondItem="zlM-ev-euo" secondAttribute="leading" id="Zx2-rf-NWP"/>
