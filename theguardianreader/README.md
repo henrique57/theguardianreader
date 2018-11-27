@@ -1,3 +1,3 @@
 # theguardianreader
 
-A description of this package.
+Application to read news from the guardian
