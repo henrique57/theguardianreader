@@ -5,7 +5,7 @@
 	<key>domain</key>
 	<string>https://content.guardianapis.com/&lt;resource&gt;</string>
 	<key>api-key</key>
-	<string>?api-key=cf6a8a21-ab8c-4ed5-94d0-80a7c892eb82</string>
+	<string>?api-key=""</string>
 	<key>page-url</key>
 	<string>&amp;page-size=&lt;pageQtt&gt;&amp;page=&lt;page&gt;</string>
 	<key>order-url</key>
